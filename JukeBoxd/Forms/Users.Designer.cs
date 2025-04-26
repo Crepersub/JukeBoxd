@@ -38,27 +38,31 @@
             // 
             // listBox1
             // 
+            listBox1.BackColor = Color.DarkSeaGreen;
+            listBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(12, 12);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(353, 424);
+            listBox1.Size = new Size(287, 342);
             listBox1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(397, 60);
+            label1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(356, 123);
             label1.Name = "label1";
-            label1.Size = new Size(78, 20);
+            label1.Size = new Size(103, 26);
             label1.TabIndex = 1;
             label1.Text = "Username:";
             label1.Visible = false;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(397, 83);
+            textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(356, 162);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(337, 27);
+            textBox1.Size = new Size(337, 33);
             textBox1.TabIndex = 2;
             textBox1.Visible = false;
             textBox1.KeyDown += textBox1_KeyDown;
@@ -66,46 +70,58 @@
             // 
             // button1
             // 
-            button1.Location = new Point(522, 12);
+            button1.BackColor = Color.Transparent;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Microsoft PhagsPa", 12F);
+            button1.Location = new Point(484, 45);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(113, 39);
             button1.TabIndex = 3;
             button1.Text = "Update";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(622, 12);
+            button2.BackColor = Color.Transparent;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Microsoft PhagsPa", 12F);
+            button2.Location = new Point(618, 45);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(113, 39);
             button2.TabIndex = 4;
             button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(423, 12);
+            button3.BackColor = Color.Transparent;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Microsoft PhagsPa", 12F);
+            button3.Location = new Point(354, 45);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(113, 39);
             button3.TabIndex = 5;
-            button3.Text = "Add user";
-            button3.UseVisualStyleBackColor = true;
+            button3.Text = "Add";
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // Users
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(770, 381);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(listBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Users";
+            Padding = new Padding(2);
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Users";
             FormClosed += Users_FormClosed;
             Load += Users_Load;

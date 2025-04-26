@@ -19,6 +19,16 @@ namespace JukeBoxd.Forms
         public Main()
         {
             InitializeComponent();
+
+            this.BackColor = Color.FromArgb(230, 218, 206);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 3;
+            button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button2.FlatAppearance.BorderSize = 3;
+            button3.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button3.FlatAppearance.BorderSize = 3;
+            dataGridView1.BackgroundColor = Color.FromArgb(230, 218, 206);
+            textBox1.BackColor = Color.FromArgb(230, 218, 206);
         }
         BindingSource source = new BindingSource();
         /// <summary>

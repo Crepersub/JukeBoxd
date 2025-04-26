@@ -13,7 +13,7 @@ namespace JukeBoxd.Forms
             InitializeComponent();
 
             button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);           
-            button1.FlatAppearance.BorderSize = 3;          
+            button1.FlatAppearance.BorderSize = 2;          
             button2.FlatAppearance.BorderColor= Color.FromArgb(159, 160, 154);
             button2.FlatAppearance.BorderSize = 2;
             comboBox1.BackColor = Color.FromArgb(230, 218, 206);

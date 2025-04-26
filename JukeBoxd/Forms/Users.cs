@@ -18,6 +18,15 @@ namespace JukeBoxd.Forms
         public Users()
         {
             InitializeComponent();
+
+            this.BackColor = Color.FromArgb(230, 218, 206);
+            listBox1.BackColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 3;
+            button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button2.FlatAppearance.BorderSize = 3;
+            button3.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button3.FlatAppearance.BorderSize = 3;
         }
 
         private void button3_Click(object sender, EventArgs e)
