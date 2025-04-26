@@ -47,6 +47,7 @@ namespace JukeBoxd
 
         static void Main(string[] args)
         {
+            dbContext.Database.EnsureCreated();
             Application.EnableVisualStyles();
             Application.Run(login);
         }
