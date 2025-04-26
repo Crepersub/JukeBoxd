@@ -32,7 +32,6 @@
             label1 = new Label();
             button1 = new Button();
             label2 = new Label();
-            numericUpDown1 = new NumericUpDown();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -43,7 +42,6 @@
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -92,16 +90,6 @@
             label2.Size = new Size(52, 20);
             label2.TabIndex = 3;
             label2.Text = "Rating";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(411, 49);
-            numericUpDown1.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(150, 27);
-            numericUpDown1.TabIndex = 4;
-            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // pictureBox1
             // 
@@ -218,7 +206,6 @@
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox7);
             Controls.Add(pictureBox8);
-            Controls.Add(numericUpDown1);
             Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(label1);
@@ -226,7 +213,6 @@
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -247,7 +233,6 @@
         private Label label1;
         private Button button1;
         private Label label2;
-        private NumericUpDown numericUpDown1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
