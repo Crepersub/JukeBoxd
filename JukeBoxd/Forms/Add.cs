@@ -29,6 +29,11 @@ namespace JukeBoxd.Forms
         public Add()
         {
             InitializeComponent();
+
+            this.BackColor = Color.FromArgb(230, 218, 206);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 3;
+
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5 };
 
             for (int i = 0; i < stars.Length; i++)
@@ -58,11 +63,11 @@ namespace JukeBoxd.Forms
             {
                 if (i % 2 == 0 && !isclicked[i])
                 {
-                    stars[i].Image = Properties.Resources.Untitled_2;
+                    stars[i].Image = Properties.Resources.newEStar2;
                 }
                 else if (!isclicked[i])
                 {
-                    stars[i].Image = Properties.Resources.Untitled_1;
+                    stars[i].Image = Properties.Resources.newEStar1;
                 }
             }
         }
@@ -73,11 +78,11 @@ namespace JukeBoxd.Forms
             {
                 if (i % 2 == 0 && !isclicked[i])
                 {
-                    stars[i].Image = Properties.Resources.FilledStarLeft;
+                    stars[i].Image = Properties.Resources.newFStar2;
                 }
                 else if (!isclicked[i])
                 {
-                    stars[i].Image = Properties.Resources.FilledStarRight;
+                    stars[i].Image = Properties.Resources.newFStar1;
                 }
             }
         }
@@ -132,8 +137,9 @@ namespace JukeBoxd.Forms
                 EntryMid.AddEntry(entrytosave);
                 SongAdded?.Invoke(this, EventArgs.Empty);
                 this.Close();
-                
+
             }
+            else MessageBox.Show("Select a song");
         }
     }
 }
