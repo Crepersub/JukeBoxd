@@ -11,6 +11,14 @@ namespace JukeBoxd.Forms
         public Login()
         {
             InitializeComponent();
+
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);           
+            button1.FlatAppearance.BorderSize = 3;          
+            button2.FlatAppearance.BorderColor= Color.FromArgb(159, 160, 154);
+            button2.FlatAppearance.BorderSize = 2;
+            comboBox1.BackColor = Color.FromArgb(230, 218, 206);
+            
+
         }
 
         /// <summary>
@@ -26,6 +34,7 @@ namespace JukeBoxd.Forms
                 Program.CurrentUser = Program.dbContext.Users.Where(x => x.Username == comboBox1.SelectedItem.ToString()).FirstOrDefault()!;
                 new Main().Show();
             }
+            else MessageBox.Show("Select a user!","No user selected");
         }
 
         /// <summary>
