@@ -18,6 +18,9 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
             comboBox1.DataSource = UserMid.GetUsersEntries(Program.CurrentUser.Id);
+            this.BackColor = Color.FromArgb(230, 218, 206);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 3;
         }
 
         private void button1_Click(object sender, EventArgs e)

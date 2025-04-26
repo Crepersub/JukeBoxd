@@ -42,6 +42,7 @@
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -198,11 +199,20 @@
             pictureBox8.TabIndex = 19;
             pictureBox8.TabStop = false;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(125, 113);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 20);
+            label3.TabIndex = 29;
+            // 
             // Add
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(451, 293);
+            Controls.Add(label3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox3);
@@ -250,5 +260,6 @@
         private PictureBox pictureBox6;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
+        private Label label3;
     }
 }

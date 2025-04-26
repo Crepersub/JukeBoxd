@@ -12,12 +12,12 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
-            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);           
-            button1.FlatAppearance.BorderSize = 2;          
-            button2.FlatAppearance.BorderColor= Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 2;
+            button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
             button2.FlatAppearance.BorderSize = 2;
             comboBox1.BackColor = Color.FromArgb(230, 218, 206);
-            
+
 
         }
 
@@ -33,8 +33,9 @@ namespace JukeBoxd.Forms
             {
                 Program.CurrentUser = Program.dbContext.Users.Where(x => x.Username == comboBox1.SelectedItem.ToString()).FirstOrDefault()!;
                 new Main().Show();
+                Hide();
             }
-            else MessageBox.Show("Select a user!","No user selected");
+            else MessageBox.Show("Select a user!", "No user selected");
         }
 
         /// <summary>
@@ -72,6 +73,11 @@ namespace JukeBoxd.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             new Users().Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

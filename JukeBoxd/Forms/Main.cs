@@ -89,5 +89,10 @@ namespace JukeBoxd.Forms
             deleteForm.SongDeleted += (s, args) => UpdateDataGridView();
             deleteForm.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

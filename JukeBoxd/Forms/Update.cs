@@ -17,58 +17,77 @@ namespace JukeBoxd.Forms
         private float rating = 0;
         public event EventHandler SongUpdated;
         private bool[] isclicked = new bool[10];
+        private bool isRatingSet = false;
+        private int selectedCount = 0;
         public Update()
         {
             InitializeComponent();
             comboBox1.DataSource = UserMid.GetUsersEntries(Program.CurrentUser.Id);
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
+            this.BackColor = Color.FromArgb(230, 218, 206);
+            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 3;
 
             for (int i = 0; i < stars.Length; i++)
             {
                 int index = i;
+                stars[i].MouseEnter += (s, e) => HighlightStars(index + 1);
+
                 stars[i].Click += (s, e) =>
                 {
-                    rating = (index+1) / 2f;
-                    HighlightStars(index + 1);
-                    SetAsClicked(index + 1);
+                    rating = (index + 1) / 2f;
+                    selectedCount = index + 1;
+                    SetRating(index + 1);
+                    isRatingSet = true;
+                    HighlightStars(selectedCount);
+                    label3.Text = $"{rating}";
                 };
-                stars[i].MouseEnter += (s, e) => HighlightStars(index + 1);
-                stars[i].MouseLeave += (s, e) => EmptyAfter(index + 1);
+                stars[i].MouseLeave += (s, e) =>
+                {
+                    if (!isRatingSet) ResetStars();
+                    else
+                        HighlightStars((int)rating * 2);
+                    HighlightStars(selectedCount);
+                };
             }
         }
-        private void SetAsClicked(int index)
+        private void SetRating(int halfStarIndex)
         {
-            for (int i = 0; i < index; i++)
-            {
-                isclicked[i] = true;
-            }
+            rating = halfStarIndex * 0.5f; // 1 half-star = 0.5 rating
         }
-        private void EmptyAfter(int count)
+        private void ResetStars()
         {
             for (int i = 0; i < stars.Length; i++)
             {
-                if (i % 2 == 0 && !isclicked[i])
+                if (i % 2 == 0)
                 {
-                    stars[i].Image = Properties.Resources.Untitled_2;
+                    stars[i].Image = Properties.Resources.newEStar2;
                 }
-                else if (!isclicked[i])
-                {
-                    stars[i].Image = Properties.Resources.Untitled_1;
-                }
+                else
+                    stars[i].Image = Properties.Resources.newEStar1;
             }
         }
-
         private void HighlightStars(int count)
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < stars.Length; i++)
             {
-                if (i % 2 == 0 && !isclicked[i])
+                if (i < count)
                 {
-                    stars[i].Image = Properties.Resources.FilledStarLeft;
+                    if (i % 2 == 0)
+                    {
+                        stars[i].Image = Properties.Resources.newFStar2;  // filled half-star left
+                    }
+                    else
+                        stars[i].Image = Properties.Resources.newFStar1; // filled half-star right
                 }
-                else if (!isclicked[i])
+                else
                 {
-                    stars[i].Image = Properties.Resources.FilledStarRight;
+                    if (i % 2 == 0)
+                    {
+                        stars[i].Image = Properties.Resources.newEStar2; // empty half-star left
+                    }
+                    else
+                        stars[i].Image = Properties.Resources.newEStar1; // empty half-star right
                 }
             }
         }

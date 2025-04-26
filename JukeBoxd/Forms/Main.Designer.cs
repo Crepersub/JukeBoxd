@@ -36,6 +36,7 @@
             button3 = new Button();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -115,11 +116,26 @@
             textBox1.Size = new Size(178, 112);
             textBox1.TabIndex = 6;
             // 
+            // button4
+            // 
+            button4.BackColor = Color.Transparent;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Microsoft PhagsPa", 12F);
+            button4.Location = new Point(866, 375);
+            button4.Margin = new Padding(0);
+            button4.Name = "button4";
+            button4.Size = new Size(146, 48);
+            button4.TabIndex = 7;
+            button4.Text = "Close";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1079, 448);
+            Controls.Add(button4);
             Controls.Add(textBox1);
             Controls.Add(pictureBox1);
             Controls.Add(button3);
@@ -152,5 +168,6 @@
         private Button button3;
         private PictureBox pictureBox1;
         private TextBox textBox1;
+        private Button button4;
     }
 }
