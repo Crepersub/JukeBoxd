@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             label2 = new Label();
-            numericUpDown1 = new NumericUpDown();
             comboBox1 = new ComboBox();
             button1 = new Button();
             pictureBox5 = new PictureBox();
@@ -43,7 +42,6 @@
             pictureBox4 = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
@@ -73,13 +71,6 @@
             label2.Size = new Size(102, 20);
             label2.TabIndex = 1;
             label2.Text = "Change rating";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(237, 233);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(150, 27);
-            numericUpDown1.TabIndex = 2;
             // 
             // comboBox1
             // 
@@ -217,12 +208,10 @@
             Controls.Add(pictureBox8);
             Controls.Add(button1);
             Controls.Add(comboBox1);
-            Controls.Add(numericUpDown1);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Update";
             Text = "Update";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -241,7 +230,6 @@
 
         private Label label1;
         private Label label2;
-        private NumericUpDown numericUpDown1;
         private ComboBox comboBox1;
         private Button button1;
         private PictureBox pictureBox5;
