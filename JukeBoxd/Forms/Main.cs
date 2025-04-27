@@ -106,11 +106,7 @@ namespace JukeBoxd.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null)
-            {
-                EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
-                UpdateDataGridView();
-            }
+
             try
             {
                 if (dataGridView1.CurrentRow == null)
@@ -120,7 +116,7 @@ namespace JukeBoxd.Forms
                 EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
                 UpdateDataGridView();
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException) 
             {
                 MessageBox.Show("Please select a song from the table.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
