@@ -111,7 +111,6 @@ namespace JukeBoxd.Forms
                 EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
                 UpdateDataGridView();
             }
-        }
             try
             {
                 if (dataGridView1.CurrentRow == null)
