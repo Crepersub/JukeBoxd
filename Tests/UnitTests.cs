@@ -17,7 +17,7 @@ namespace Tests
         public void ClientSecretTest()
         {
             // Arrange
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "ClientSecrets.json");
+            var filepath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName + "/ClientSecrets.json";
             var fullJSON = File.ReadAllText(filepath);
             var clientSecret = JsonSerializer.Deserialize<ClientSecret>(fullJSON);
 
