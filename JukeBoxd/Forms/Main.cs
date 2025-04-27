@@ -91,8 +91,11 @@ namespace JukeBoxd.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
-            UpdateDataGridView();
+            if (dataGridView1.CurrentRow != null)
+            {
+                EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
+                UpdateDataGridView();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -103,17 +106,23 @@ namespace JukeBoxd.Forms
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dataGridView1.Rows[e.RowIndex];
-            textBox1.Text = row.Cells[7].Value.ToString();
-            var track = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result.Album.Images[0].Url;
-            pictureBox1.Load(track);
+            if (row.Cells[7].Value != null)
+            {
+                if (row.Cells[7].Value.ToString() != string.Empty)
+                {
+                    textBox1.Text = row.Cells[7].Value.ToString();
+                    var track = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result.Album.Images[0].Url;
+                    pictureBox1.Load(track);
+                }
+            }
         }
 
         private async void button5_Click(object sender, EventArgs e)
         {
             var row = dataGridView1.CurrentRow;
             var selectedTrack = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result;
-            var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack.ExternalIds["isrc"]);
-            await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
+            //var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack);//selectedTrack.ExternalIds["isrc"]);
+            //await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
         }
     }
 }

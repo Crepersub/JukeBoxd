@@ -6,29 +6,35 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Windows.Media.Protection.PlayReady;
 using NAudio.Wave;
+using System.Net;
+using SpotifyAPI.Web;
 
 namespace JukeBoxd.Models
 {
     public class DeezerClient
     {
-        static private readonly HttpClient httpClient = new();
-        static public async Task<DeezerTrack> SearchTrackISRC(string isrc)
-        {
-            string url = $"http://api.deezer.com/search?q=isrc:{Uri.EscapeDataString(isrc)}";
-            var response = await httpClient.GetStringAsync(url);
-            var json = JsonDocument.Parse(response);
-            var tracks = json.RootElement.GetProperty("data");
+        static private WebClient client = new WebClient();
+        //static public async Task<DeezerTrack> SearchTrackISRC(FullTrack track)
+        //{
+        //    //Uri uri = new Uri($"https://api.deezer.com/search?q=isrc:{Uri.EscapeDataString(isrc)}");
+        //    Uri uri = new($"https://api.deezer.com/search?q=artist:{string.Join(" ", track)}";
 
-            if (tracks.GetArrayLength() == 0)
-                return null;
+        //    byte[] data = client.DownloadData(uri);
+        //    string response = System.Text.Encoding.UTF8.GetString(data);
 
-            var first = tracks[0];
-            var track = new DeezerTrack
-            {
-                PreviewURL = first.GetProperty("preview").GetString()
-            };
-            return track;
-        }
+        //    var json = JsonDocument.Parse(response);
+        //    var tracks = json.RootElement.GetProperty("data");
+
+        //    if (tracks.GetArrayLength() == 0)
+        //        return null;
+
+        //    var first = tracks[0];
+        //    var DeezerTrack = new DeezerTrack
+        //    {
+        //        PreviewURL = first.GetProperty("preview").GetString()
+        //    };
+        //    return DeezerTrack;
+        //}
         static public async Task PlayPreviewAsync(string previewUrl)
         {
             using var mf = new MediaFoundationReader(previewUrl);
