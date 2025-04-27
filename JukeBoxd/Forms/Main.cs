@@ -70,16 +70,16 @@ namespace JukeBoxd.Forms
         /// <param name="entry">The new <see cref="Entry"/> to be added.</param>
         public void UpdateDataGridView()
         {
-            if (dataGridView1.SelectedRows==null)
+            if (dataGridView1.SelectedRows == null)
             {
-                MessageBox.Show("Please select a row from the table.","Update",MessageBoxButtons.OK);
+                MessageBox.Show("Please select a row from the table.", "Update", MessageBoxButtons.OK);
             }
             var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser.Id));
             source = new BindingSource(entries, null);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = source;
             dataGridView1_CellClick(null, new DataGridViewCellEventArgs(0, 0));
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -95,8 +95,8 @@ namespace JukeBoxd.Forms
                 DateOnly.Parse(dataGridView1.CurrentRow.Cells[5].Value.ToString()), //date
                 (int)dataGridView1.CurrentRow.Cells[0].Value,
                 dataGridView1.CurrentRow.Cells[7].Value.ToString()); //id
-            update.SongUpdated += (s, args) => UpdateDataGridView();
-            update.Show();
+                update.SongUpdated += (s, args) => UpdateDataGridView();
+                update.Show();
             }
             catch (InvalidOperationException)
             {
@@ -154,6 +154,11 @@ namespace JukeBoxd.Forms
             {
                 await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
             }
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

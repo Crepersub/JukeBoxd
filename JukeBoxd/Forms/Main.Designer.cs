@@ -142,7 +142,7 @@
             button5.Name = "button5";
             button5.Size = new Size(146, 48);
             button5.TabIndex = 8;
-            button5.Text = "Currently broken";
+            button5.Text = "Preview song";
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
@@ -161,6 +161,7 @@
             Controls.Add(button1);
             Name = "Main";
             Text = "Main";
+            FormClosed += Main_FormClosed;
             Load += Main_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).EndInit();
