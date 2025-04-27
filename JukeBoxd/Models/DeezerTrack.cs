@@ -9,6 +9,7 @@ namespace JukeBoxd.Models
     public class DeezerTrack
     {
         public string PreviewURL { get; set; }
-
+        public string Id { get; set; }
+        public string ISRC { get; set; }
     }
 }

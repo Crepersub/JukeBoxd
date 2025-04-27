@@ -14,27 +14,47 @@ namespace JukeBoxd.Models
     public class DeezerClient
     {
         static private WebClient client = new WebClient();
-        //static public async Task<DeezerTrack> SearchTrackISRC(FullTrack track)
-        //{
-        //    //Uri uri = new Uri($"https://api.deezer.com/search?q=isrc:{Uri.EscapeDataString(isrc)}");
-        //    Uri uri = new($"https://api.deezer.com/search?q=artist:{string.Join(" ", track)}";
+        static public async Task<DeezerTrack> SearchTrackISRC(FullTrack track)
+        {
+            Uri uri = new Uri($"https://api.deezer.com/search?q=artist:\"{Uri.EscapeDataString(track.Artists.First().Name)}\" track:\"{Uri.EscapeDataString(track.Name)}\"");
 
-        //    byte[] data = client.DownloadData(uri);
-        //    string response = System.Text.Encoding.UTF8.GetString(data);
+            byte[] data = client.DownloadData(uri);
+            string response = System.Text.Encoding.UTF8.GetString(data);
 
-        //    var json = JsonDocument.Parse(response);
-        //    var tracks = json.RootElement.GetProperty("data");
+            var json = JsonDocument.Parse(response);
+            var tracks = json.RootElement.GetProperty("data");
 
-        //    if (tracks.GetArrayLength() == 0)
-        //        return null;
+            if (tracks.GetArrayLength() == 0)
+                return null;
 
-        //    var first = tracks[0];
-        //    var DeezerTrack = new DeezerTrack
-        //    {
-        //        PreviewURL = first.GetProperty("preview").GetString()
-        //    };
-        //    return DeezerTrack;
-        //}
+            var first = tracks[0];
+
+            // Now fetch track details
+            Uri secondURI = new Uri($"https://api.deezer.com/track/{first.GetProperty("id").GetInt32()}");
+            byte[] data2 = client.DownloadData(secondURI);
+            string response2 = System.Text.Encoding.UTF8.GetString(data2);
+            var json2 = JsonDocument.Parse(response2);
+            var track2 = json2.RootElement;
+
+            // No ".GetProperty("data")" here, it's already the object
+
+            var DeezerTrack = new DeezerTrack
+            {
+                PreviewURL = track2.GetProperty("preview").GetString(),
+                Id = track2.GetProperty("id").GetInt32().ToString(),
+                ISRC = track2.GetProperty("isrc").GetString()
+            };
+
+            if (track.ExternalIds["isrc"] == DeezerTrack.ISRC)
+            {
+                return DeezerTrack;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         static public async Task PlayPreviewAsync(string previewUrl)
         {
             using var mf = new MediaFoundationReader(previewUrl);

@@ -108,7 +108,7 @@ namespace JukeBoxd.Forms
             var row = dataGridView1.Rows[e.RowIndex];
             if (row.Cells[7].Value != null)
             {
-                if (row.Cells[7].Value.ToString() != string.Empty)
+                if (row.Cells[8].Value.ToString() != string.Empty)
                 {
                     textBox1.Text = row.Cells[7].Value.ToString();
                     var track = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result.Album.Images[0].Url;
@@ -121,8 +121,11 @@ namespace JukeBoxd.Forms
         {
             var row = dataGridView1.CurrentRow;
             var selectedTrack = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result;
-            //var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack);//selectedTrack.ExternalIds["isrc"]);
-            //await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
+            var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack);//selectedTrack.ExternalIds["isrc"]);
+            if (deezerTrack is not null)
+            {
+                await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
+            }
         }
     }
 }
