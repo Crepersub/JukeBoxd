@@ -16,13 +16,14 @@ namespace JukeBoxd.Forms
         private PictureBox[] stars;
         private float rating = 0;
         public event EventHandler SongUpdated;
-        private bool[] isclicked = new bool[10];
         private bool isRatingSet = false;
         private int selectedCount = 0;
-        public Update()
+        private int selectedID = 0;
+        public Update(string title, string author, DateOnly date, int id, string review)
         {
             InitializeComponent();
-            comboBox1.DataSource = UserMid.GetUsersEntries(Program.CurrentUser.Id);
+            textBox1.Text = $"{title} by {author}";
+            textBox2.Text = review;
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
             this.BackColor = Color.FromArgb(230, 218, 206);
             button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
@@ -50,6 +51,8 @@ namespace JukeBoxd.Forms
                     HighlightStars(selectedCount);
                 };
             }
+            dateTimePicker1.Value = date.ToDateTime(new TimeOnly(0, 0));
+            selectedID = id;
         }
         private void SetRating(int halfStarIndex)
         {
@@ -94,7 +97,7 @@ namespace JukeBoxd.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            EntryMid.ChangeRating(EntryMid.GetSongId((comboBox1.SelectedItem as Entry).Id), rating);
+            EntryMid.UpdateEntry(selectedID, rating,DateOnly.FromDateTime(dateTimePicker1.Value),textBox2.Text);
             SongUpdated?.Invoke(this, EventArgs.Empty);
             this.Close();
         }

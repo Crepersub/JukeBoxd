@@ -43,9 +43,9 @@ namespace JukeBoxd
         /// <param name="track">The track to add as an entry.</param>
         /// <param name="userid">The ID of the user associated with the entry.</param>
         /// <param name="rating">The rating of the track.</param>
-        public static void AddEntry(FullTrack track, int userid, float rating)
+        public static void AddEntry(FullTrack track, int userid, float rating,DateOnly date, string review)
         {
-            Program.dbContext.Entries.Add(new Entry(track, userid, rating));
+            Program.dbContext.Entries.Add(new Entry(track, userid, rating, date, review));
             Program.dbContext.SaveChanges();
         }
 
@@ -64,14 +64,15 @@ namespace JukeBoxd
         /// </summary>
         /// <param name="entryid">The ID of the entry to update.</param>
         /// <param name="newrating">The new rating to assign to the entry.</param>
-        public static void ChangeRating(int entryid, float newrating)
+        public static void UpdateEntry(int entryid, float newrating, DateOnly date, string review)
         {
             var entry = Program.dbContext.Entries.FirstOrDefault(x => x.Id == entryid);
             if (entry is not null)
             {
                 entry.Rating = newrating;
+                entry.EntryDate = date; //new
+                entry.Review = review; //new
                 //new
-                entry.EntryDate = DateOnly.FromDateTime(DateTime.Now); 
                 Program.dbContext.SaveChanges();
             }
         }

@@ -46,6 +46,8 @@ namespace JukeBoxd.Forms
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Visible = false;
             dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[9].Visible = false;
         }
 
         /// <summary>
@@ -73,26 +75,45 @@ namespace JukeBoxd.Forms
             source = new BindingSource(entries, null);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = source;
-
+            dataGridView1_CellClick(null, new DataGridViewCellEventArgs(0, 0));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Update update = new Update();
+            Update update = new Update(dataGridView1.CurrentRow.Cells[2].Value.ToString(),//title 
+                dataGridView1.CurrentRow.Cells[3].Value.ToString(), //author
+                DateOnly.Parse(dataGridView1.CurrentRow.Cells[5].Value.ToString()), //date
+                (int)dataGridView1.CurrentRow.Cells[0].Value,
+                dataGridView1.CurrentRow.Cells[7].Value.ToString()); //id
             update.SongUpdated += (s, args) => UpdateDataGridView();
             update.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Delete deleteForm = new Delete();
-            deleteForm.SongDeleted += (s, args) => UpdateDataGridView();
-            deleteForm.Show();
+            EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
+            UpdateDataGridView();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dataGridView1.Rows[e.RowIndex];
+            textBox1.Text = row.Cells[7].Value.ToString();
+            var track = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result.Album.Images[0].Url;
+            pictureBox1.Load(track);
+        }
+
+        private async void button5_Click(object sender, EventArgs e)
+        {
+            var row = dataGridView1.CurrentRow;
+            var selectedTrack = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result;
+            var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack.ExternalIds["isrc"]);
+            await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
         }
     }
 }

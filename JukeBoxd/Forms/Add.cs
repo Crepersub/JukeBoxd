@@ -106,15 +106,43 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private System.Timers.Timer typingTimer;
+
         private void comboBox1_TextUpdate(object sender, EventArgs e)
         {
-            if (counter % 3 == 0)
+            if (typingTimer == null)
+            {
+                typingTimer = new System.Timers.Timer(500); // 500ms delay
+                typingTimer.Elapsed += OnTypingTimerElapsed;
+                typingTimer.AutoReset = false;
+            }
+
+            typingTimer.Stop();
+            typingTimer.Start();
+        }
+
+        private void OnTypingTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => PerformSearch()));
+            }
+            else
+            {
+                PerformSearch();
+            }
+        }
+
+        private void PerformSearch()
+        {
+            if (comboBox1.Text != string.Empty)
             {
                 // Save the current text and cursor position
                 string currentText = comboBox1.Text;
                 int cursorPosition = comboBox1.SelectionStart;
 
-                comboBox1.Items.Clear();
+                // Temporarily store items before clearing the ComboBox
+                var itemsToAdd = new List<FullTrackWithString>();
 
                 // Perform a Spotify search with the current text
                 var searchResults = EntryMid.SpotifySearch(currentText);
@@ -122,15 +150,21 @@ namespace JukeBoxd.Forms
                 {
                     foreach (var track in searchResults)
                     {
-                        comboBox1.Items.Add(track);
+                        itemsToAdd.Add(track);  // Collect the search results
                     }
+                }
+
+                // Clear items and then add all at once
+                comboBox1.Items.Clear();
+                foreach (var item in itemsToAdd)
+                {
+                    comboBox1.Items.Add(item);
                 }
 
                 // Restore the text and cursor position
                 comboBox1.Text = currentText;
                 comboBox1.SelectionStart = cursorPosition;
             }
-            counter++;
         }
 
         /// <summary>
@@ -144,7 +178,7 @@ namespace JukeBoxd.Forms
             if (comboBox1.SelectedItem is not null)
             {
                 // Create a new entry with the selected track, user ID, and rating
-                Entry entrytosave = new Entry(comboBox1.SelectedItem as FullTrack, Program.CurrentUser.Id, rating);
+                Entry entrytosave = new Entry(comboBox1.SelectedItem as FullTrack, Program.CurrentUser.Id, rating, DateOnly.FromDateTime(dateTimePicker1.Value), textBox1.Text);
 
                 // Save the entry and update the main form
                 EntryMid.AddEntry(entrytosave);

@@ -16,14 +16,18 @@ namespace JukeBoxd.Models
         public TimeSpan Length { get; set; }
         public DateOnly EntryDate { get; set; }
         public float Rating { get; set; }
+        public string Review { get; set; } = string.Empty;
+        public string SpotifyToken { get; set; } = string.Empty;
         public User User { get; set; } = null!;
-        public Entry(FullTrack? track, int userid, float rating)
+        public Entry(FullTrack? track, int userid, float rating, DateOnly date, string review)
         {
             userId = userid;
             Title = track!.Name;
             Author = string.Join(", ", track.Artists.Select(a => a.Name));
             Length = TimeSpan.FromMilliseconds(track.DurationMs);
-            EntryDate = DateOnly.FromDateTime(DateTime.Now);
+            EntryDate = date;
+            SpotifyToken = track.Id;
+            Review = review;
             Rating = rating;
         }
         public Entry() { }

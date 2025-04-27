@@ -37,6 +37,7 @@
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
             button4 = new Button();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -69,6 +70,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(667, 236);
             dataGridView1.TabIndex = 2;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // button2
             // 
@@ -130,11 +132,26 @@
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Microsoft PhagsPa", 12F);
+            button5.Location = new Point(29, 114);
+            button5.Margin = new Padding(0);
+            button5.Name = "button5";
+            button5.Size = new Size(146, 48);
+            button5.TabIndex = 8;
+            button5.Text = "Currently broken";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1079, 448);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(textBox1);
             Controls.Add(pictureBox1);
@@ -169,5 +186,6 @@
         private PictureBox pictureBox1;
         private TextBox textBox1;
         private Button button4;
+        private Button button5;
     }
 }

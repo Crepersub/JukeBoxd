@@ -43,6 +43,9 @@
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
             label3 = new Label();
+            label4 = new Label();
+            textBox1 = new TextBox();
+            dateTimePicker1 = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -59,9 +62,9 @@
             // 
             comboBox1.Font = new Font("Microsoft PhagsPa", 12F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(122, 61);
+            comboBox1.Location = new Point(53, 61);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(205, 34);
+            comboBox1.Size = new Size(349, 34);
             comboBox1.TabIndex = 0;
             comboBox1.TextUpdate += comboBox1_TextUpdate;
             // 
@@ -70,7 +73,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft PhagsPa", 12F);
-            label1.Location = new Point(122, 22);
+            label1.Location = new Point(53, 22);
             label1.Name = "label1";
             label1.Size = new Size(124, 26);
             label1.TabIndex = 1;
@@ -81,7 +84,7 @@
             button1.BackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(156, 228);
+            button1.Location = new Point(156, 454);
             button1.Name = "button1";
             button1.Size = new Size(120, 39);
             button1.TabIndex = 2;
@@ -207,11 +210,40 @@
             label3.Size = new Size(0, 20);
             label3.TabIndex = 29;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft PhagsPa", 12F);
+            label4.Location = new Point(50, 232);
+            label4.Name = "label4";
+            label4.Size = new Size(73, 26);
+            label4.TabIndex = 30;
+            label4.Text = "Review";
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(50, 271);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(353, 112);
+            textBox1.TabIndex = 31;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(53, 403);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(349, 27);
+            dateTimePicker1.TabIndex = 32;
+            // 
             // Add
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(451, 293);
+            ClientSize = new Size(451, 530);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(textBox1);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
@@ -261,5 +293,8 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
         private Label label3;
+        private Label label4;
+        private TextBox textBox1;
+        private DateTimePicker dateTimePicker1;
     }
 }
