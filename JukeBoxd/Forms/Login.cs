@@ -12,12 +12,16 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
-            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button1.FlatAppearance.BorderSize = 2;
-            button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button2.FlatAppearance.BorderSize = 2;
+           // button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 0;
+           // button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button2.FlatAppearance.BorderSize = 0;
             comboBox1.BackColor = Color.FromArgb(230, 218, 206);
-
+            this.Size = new Size(660, 434);
+            label1.Location = new Point(220,110);
+            comboBox1.Location = new Point(255, 155);
+            button1.Location = new Point(255, 195);
+            button2.Location = new Point(235, 245);
 
         }
 

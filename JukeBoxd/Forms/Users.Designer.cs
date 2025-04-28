@@ -41,7 +41,7 @@
             listBox1.BackColor = Color.DarkSeaGreen;
             listBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(12, 12);
+            listBox1.Location = new Point(453, 18);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(287, 342);
             listBox1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(356, 123);
+            label1.Location = new Point(44, 247);
             label1.Name = "label1";
             label1.Size = new Size(103, 26);
             label1.TabIndex = 1;
@@ -60,7 +60,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(356, 162);
+            textBox1.Location = new Point(44, 290);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(337, 33);
             textBox1.TabIndex = 2;
@@ -73,7 +73,7 @@
             button1.BackColor = Color.Transparent;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(484, 45);
+            button1.Location = new Point(34, 100);
             button1.Name = "button1";
             button1.Size = new Size(113, 39);
             button1.TabIndex = 3;
@@ -86,7 +86,7 @@
             button2.BackColor = Color.Transparent;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Microsoft PhagsPa", 12F);
-            button2.Location = new Point(618, 45);
+            button2.Location = new Point(34, 162);
             button2.Name = "button2";
             button2.Size = new Size(113, 39);
             button2.TabIndex = 4;
@@ -99,7 +99,7 @@
             button3.BackColor = Color.Transparent;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Microsoft PhagsPa", 12F);
-            button3.Location = new Point(354, 45);
+            button3.Location = new Point(34, 35);
             button3.Name = "button3";
             button3.Size = new Size(113, 39);
             button3.TabIndex = 5;
@@ -111,7 +111,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(770, 381);
+            ClientSize = new Size(772, 383);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
