@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using JukeBoxd;
 using System.Text.Json;
+using JukeBoxd.BusinessLayer;
 
 namespace Tests
 {
@@ -22,7 +23,7 @@ namespace Tests
             var clientSecret = JsonSerializer.Deserialize<ClientSecret>(fullJSON);
 
             // Act
-            var clientID = clientSecret.clientID;
+            var clientID = clientSecret.ClientID;
             var clientSecretValue = clientSecret.clientSecret;
 
             // Assert
@@ -66,7 +67,7 @@ namespace Tests
                 var entry = new Entry
                 {
                     Id = 1,
-                    userId = 1,
+                    UserId = 1,
                     Title = "Test Track",
                     Author = "Test Artist",
                     Length = TimeSpan.FromMinutes(3),

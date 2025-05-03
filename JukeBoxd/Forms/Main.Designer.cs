@@ -29,165 +29,154 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            button1 = new Button();
-            dataGridView1 = new DataGridView();
+            AddMainButton = new Button();
+            MainDataGridView = new DataGridView();
             entryBindingSource = new BindingSource(components);
-            button2 = new Button();
-            button3 = new Button();
-            pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
-            button4 = new Button();
-            button5 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            UpdateMainButton = new Button();
+            DeleteMainButton = new Button();
+            AlbumCoverPictureBox = new PictureBox();
+            PreviewButton = new Button();
+            ReviewLabel = new Label();
+            ((System.ComponentModel.ISupportInitialize)MainDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)AlbumCoverPictureBox).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // AddMainButton
             // 
-            button1.BackColor = Color.Transparent;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(29, 31);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(146, 48);
-            button1.TabIndex = 1;
-            button1.Text = "Add ";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            AddMainButton.BackColor = Color.Transparent;
+            AddMainButton.BackgroundImage = Properties.Resources.button1;
+            AddMainButton.BackgroundImageLayout = ImageLayout.Stretch;
+            AddMainButton.FlatStyle = FlatStyle.Flat;
+            AddMainButton.Font = new Font("Microsoft PhagsPa", 12F);
+            AddMainButton.Location = new Point(14, 15);
+            AddMainButton.Margin = new Padding(0);
+            AddMainButton.Name = "AddMainButton";
+            AddMainButton.Size = new Size(146, 48);
+            AddMainButton.TabIndex = 1;
+            AddMainButton.Text = "Add ";
+            AddMainButton.UseVisualStyleBackColor = false;
+            AddMainButton.Click += AddButton_Click;
             // 
-            // dataGridView1
+            // MainDataGridView
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.DataSource = entryBindingSource;
-            dataGridView1.GridColor = Color.Black;
-            dataGridView1.Location = new Point(29, 187);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(667, 236);
-            dataGridView1.TabIndex = 2;
-            dataGridView1.CellClick += dataGridView1_CellClick;
+            MainDataGridView.AllowUserToAddRows = false;
+            MainDataGridView.AutoGenerateColumns = false;
+            MainDataGridView.BorderStyle = BorderStyle.None;
+            MainDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MainDataGridView.DataSource = entryBindingSource;
+            MainDataGridView.GridColor = Color.Black;
+            MainDataGridView.Location = new Point(14, 83);
+            MainDataGridView.MultiSelect = false;
+            MainDataGridView.Name = "MainDataGridView";
+            MainDataGridView.ReadOnly = true;
+            MainDataGridView.RowHeadersWidth = 51;
+            MainDataGridView.Size = new Size(631, 281);
+            MainDataGridView.TabIndex = 2;
+            MainDataGridView.CellClick += MainDataGridView_CellClick;
             // 
-            // button2
+            // UpdateMainButton
             // 
-            button2.BackColor = Color.Transparent;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Microsoft PhagsPa", 12F);
-            button2.Location = new Point(192, 31);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(131, 48);
-            button2.TabIndex = 3;
-            button2.Text = "Update ";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            UpdateMainButton.BackColor = Color.Transparent;
+            UpdateMainButton.BackgroundImage = Properties.Resources.button1;
+            UpdateMainButton.BackgroundImageLayout = ImageLayout.Stretch;
+            UpdateMainButton.FlatStyle = FlatStyle.Flat;
+            UpdateMainButton.Font = new Font("Microsoft PhagsPa", 12F);
+            UpdateMainButton.Location = new Point(191, 15);
+            UpdateMainButton.Margin = new Padding(0);
+            UpdateMainButton.Name = "UpdateMainButton";
+            UpdateMainButton.Size = new Size(131, 48);
+            UpdateMainButton.TabIndex = 3;
+            UpdateMainButton.Text = "Update ";
+            UpdateMainButton.UseVisualStyleBackColor = false;
+            UpdateMainButton.Click += UpdateButton_Click;
             // 
-            // button3
+            // DeleteMainButton
             // 
-            button3.BackColor = Color.Transparent;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Microsoft PhagsPa", 12F);
-            button3.Location = new Point(338, 31);
-            button3.Margin = new Padding(0);
-            button3.Name = "button3";
-            button3.Size = new Size(137, 48);
-            button3.TabIndex = 4;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            DeleteMainButton.BackColor = Color.Transparent;
+            DeleteMainButton.BackgroundImage = Properties.Resources.button1;
+            DeleteMainButton.BackgroundImageLayout = ImageLayout.Stretch;
+            DeleteMainButton.FlatStyle = FlatStyle.Flat;
+            DeleteMainButton.Font = new Font("Microsoft PhagsPa", 12F);
+            DeleteMainButton.Location = new Point(366, 15);
+            DeleteMainButton.Margin = new Padding(0);
+            DeleteMainButton.Name = "DeleteMainButton";
+            DeleteMainButton.Size = new Size(137, 48);
+            DeleteMainButton.TabIndex = 4;
+            DeleteMainButton.Text = "Delete";
+            DeleteMainButton.UseVisualStyleBackColor = false;
+            DeleteMainButton.Click += DeleteButton_Click;
             // 
-            // pictureBox1
+            // AlbumCoverPictureBox
             // 
-            pictureBox1.Location = new Point(854, 31);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(178, 190);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
+            AlbumCoverPictureBox.Location = new Point(728, 15);
+            AlbumCoverPictureBox.Name = "AlbumCoverPictureBox";
+            AlbumCoverPictureBox.Size = new Size(250, 250);
+            AlbumCoverPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            AlbumCoverPictureBox.TabIndex = 5;
+            AlbumCoverPictureBox.TabStop = false;
             // 
-            // textBox1
+            // PreviewButton
             // 
-            textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(854, 227);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(178, 112);
-            textBox1.TabIndex = 6;
+            PreviewButton.BackColor = Color.Transparent;
+            PreviewButton.BackgroundImage = Properties.Resources.button1;
+            PreviewButton.BackgroundImageLayout = ImageLayout.Stretch;
+            PreviewButton.FlatStyle = FlatStyle.Flat;
+            PreviewButton.Font = new Font("Microsoft PhagsPa", 12F);
+            PreviewButton.Location = new Point(533, 15);
+            PreviewButton.Margin = new Padding(0);
+            PreviewButton.Name = "PreviewButton";
+            PreviewButton.Size = new Size(146, 48);
+            PreviewButton.TabIndex = 8;
+            PreviewButton.Text = "Preview song";
+            PreviewButton.UseVisualStyleBackColor = false;
+            PreviewButton.Click += PreviewButton_Click;
             // 
-            // button4
+            // ReviewLabel
             // 
-            button4.BackColor = Color.Transparent;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Microsoft PhagsPa", 12F);
-            button4.Location = new Point(866, 375);
-            button4.Margin = new Padding(0);
-            button4.Name = "button4";
-            button4.Size = new Size(146, 48);
-            button4.TabIndex = 7;
-            button4.Text = "Close";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
-            // 
-            // button5
-            // 
-            button5.BackColor = Color.Transparent;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Microsoft PhagsPa", 12F);
-            button5.Location = new Point(29, 114);
-            button5.Margin = new Padding(0);
-            button5.Name = "button5";
-            button5.Size = new Size(146, 48);
-            button5.TabIndex = 8;
-            button5.Text = "Preview song";
-            button5.UseVisualStyleBackColor = false;
-            button5.Click += button5_Click;
+            ReviewLabel.BorderStyle = BorderStyle.FixedSingle;
+            ReviewLabel.FlatStyle = FlatStyle.Flat;
+            ReviewLabel.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ReviewLabel.Location = new Point(728, 269);
+            ReviewLabel.Name = "ReviewLabel";
+            ReviewLabel.Size = new Size(250, 95);
+            ReviewLabel.TabIndex = 9;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1079, 448);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(textBox1);
-            Controls.Add(pictureBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(dataGridView1);
-            Controls.Add(button1);
+            BackgroundImage = Properties.Resources.background4;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1024, 492);
+            Controls.Add(ReviewLabel);
+            Controls.Add(PreviewButton);
+            Controls.Add(AlbumCoverPictureBox);
+            Controls.Add(DeleteMainButton);
+            Controls.Add(UpdateMainButton);
+            Controls.Add(MainDataGridView);
+            Controls.Add(AddMainButton);
+            DoubleBuffered = true;
+            MaximizeBox = false;
             Name = "Main";
-            Text = "Main";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "JukeBoxd";
             FormClosed += Main_FormClosed;
             Load += Main_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MainDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)AlbumCoverPictureBox).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Button button1;
-        private DataGridView dataGridView1;
+        private Button AddMainButton;
+        private DataGridView MainDataGridView;
         private BindingSource entryBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn userIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lengthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn entryDateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn ratingDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
-        private Button button2;
-        private Button button3;
-        private PictureBox pictureBox1;
-        private TextBox textBox1;
-        private Button button4;
-        private Button button5;
+        private Button UpdateMainButton;
+        private Button DeleteMainButton;
+        private PictureBox AlbumCoverPictureBox;
+        private Button PreviewButton;
+        private Label ReviewLabel;
     }
 }

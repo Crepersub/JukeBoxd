@@ -7,9 +7,12 @@ using JukeBoxd.Models;
 using Microsoft.EntityFrameworkCore;
 using SpotifyAPI.Web;
 
-namespace JukeBoxd
+namespace JukeBoxd.BusinessLayer
 {
-    public  class EntryMid
+    /// <summary>
+    /// Provides methods for interacting with Spotify and managing entries in the database.
+    /// </summary>
+    public class EntryMid
     {
         /// <summary>
         /// Searches for tracks on Spotify based on a search query.
@@ -43,7 +46,9 @@ namespace JukeBoxd
         /// <param name="track">The track to add as an entry.</param>
         /// <param name="userid">The ID of the user associated with the entry.</param>
         /// <param name="rating">The rating of the track.</param>
-        public static void AddEntry(FullTrack track, int userid, float rating,DateOnly date, string review)
+        /// <param name="date">The date the entry was created.</param>
+        /// <param name="review">The review text for the entry.</param>
+        public static void AddEntry(FullTrack track, int userid, float rating, DateOnly date, string review)
         {
             Program.dbContext.Entries.Add(new Entry(track, userid, rating, date, review));
             Program.dbContext.SaveChanges();
@@ -60,26 +65,27 @@ namespace JukeBoxd
         }
 
         /// <summary>
-        /// Updates the rating of an existing entry.
+        /// Updates the rating, date, and review of an existing entry.
         /// </summary>
         /// <param name="entryid">The ID of the entry to update.</param>
         /// <param name="newrating">The new rating to assign to the entry.</param>
+        /// <param name="date">The new date to assign to the entry.</param>
+        /// <param name="review">The new review text to assign to the entry.</param>
         public static void UpdateEntry(int entryid, float newrating, DateOnly date, string review)
         {
             var entry = Program.dbContext.Entries.FirstOrDefault(x => x.Id == entryid);
             if (entry is not null)
             {
                 entry.Rating = newrating;
-                entry.EntryDate = date; //new
-                entry.Review = review; //new
-                //new
+                entry.EntryDate = date;
+                entry.Review = review;
                 Program.dbContext.SaveChanges();
             }
         }
 
         /// <summary>
         /// Removes an entry from the database.
-        /// </summary>does
+        /// </summary>
         /// <param name="entryid">The ID of the entry to remove.</param>
         public static void RemoveEntry(int entryid)
         {
@@ -91,10 +97,15 @@ namespace JukeBoxd
             }
         }
 
+        /// <summary>
+        /// Retrieves the song ID associated with a specific entry.
+        /// </summary>
+        /// <param name="entryID">The ID of the entry to retrieve the song ID for.</param>
+        /// <returns>The song ID associated with the entry.</returns>
         public static int GetSongId(int entryID)
         {
-            var title = Program.dbContext.Entries.SingleOrDefault(x => x.Id==entryID);
-            return title.Id;
+            var title = Program.dbContext.Entries.SingleOrDefault(x => x.Id == entryID);
+            return title!.Id;
         }
     }
 }
