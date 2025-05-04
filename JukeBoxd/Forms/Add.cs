@@ -350,6 +350,7 @@ namespace JukeBoxd.Forms
                 PerformSearch();
             }
             SongComboBox.DroppedDown = true;
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default;
         }
 
         /// <summary>
