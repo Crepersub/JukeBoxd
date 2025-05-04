@@ -28,109 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            UsersListBox = new ListBox();
+            UsernameLabel = new Label();
+            UsernameTextBox = new TextBox();
+            UpdateButton = new Button();
+            DeleteButton = new Button();
+            AddUsersButton = new Button();
             SuspendLayout();
             // 
-            // listBox1
+            // UsersListBox
             // 
-            listBox1.BackColor = Color.DarkSeaGreen;
+            UsersListBox.BackColor = Color.DarkSeaGreen;
             listBox1.BorderStyle = BorderStyle.FixedSingle;
-            listBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(438, 35);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(287, 314);
-            listBox1.TabIndex = 0;
+            UsersListBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UsersListBox.FormattingEnabled = true;
+            UsersListBox.Location = new Point(438, 35);
+            UsersListBox.Name = "UsersListBox";
+            UsersListBox.Size = new Size(287, 342);
+            UsersListBox.TabIndex = 0;
             // 
-            // label1
+            // UsernameLabel
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(34, 262);
-            label1.Name = "label1";
-            label1.Size = new Size(103, 26);
-            label1.TabIndex = 1;
-            label1.Text = "Username:";
-            label1.Visible = false;
+            UsernameLabel.AutoSize = true;
+            UsernameLabel.BackColor = Color.Transparent;
+            UsernameLabel.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UsernameLabel.Location = new Point(173, 35);
+            UsernameLabel.Name = "UsernameLabel";
+            UsernameLabel.Size = new Size(103, 26);
+            UsernameLabel.TabIndex = 1;
+            UsernameLabel.Text = "Username:";
+            UsernameLabel.Visible = false;
             // 
-            // textBox1
+            // UsernameTextBox
             // 
-            textBox1.BackColor = SystemColors.Menu;
-            textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(34, 306);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(337, 33);
-            textBox1.TabIndex = 2;
-            textBox1.Visible = false;
-            textBox1.KeyDown += textBox1_KeyDown;
-            textBox1.KeyPress += textBox1_KeyPress;
+            UsernameTextBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UsernameTextBox.Location = new Point(173, 64);
+            UsernameTextBox.Name = "UsernameTextBox";
+            UsernameTextBox.Size = new Size(274, 33);
+            UsernameTextBox.TabIndex = 2;
+            UsernameTextBox.Visible = false;
+            UsernameTextBox.KeyDown += textBox1_KeyDown;
             // 
-            // button1
+            // UpdateButton
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImage = Properties.Resources.button1;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(34, 117);
-            button1.Name = "button1";
-            button1.Size = new Size(113, 39);
-            button1.TabIndex = 3;
-            button1.Text = "Update";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            UpdateButton.BackColor = Color.Transparent;
+            UpdateButton.BackgroundImage = Properties.Resources.button1;
+            UpdateButton.BackgroundImageLayout = ImageLayout.Stretch;
+            UpdateButton.FlatStyle = FlatStyle.Flat;
+            UpdateButton.Font = new Font("Microsoft PhagsPa", 12F);
+            UpdateButton.Location = new Point(34, 100);
+            UpdateButton.Name = "UpdateButton";
+            UpdateButton.Size = new Size(113, 39);
+            UpdateButton.TabIndex = 3;
+            UpdateButton.Text = "Update";
+            UpdateButton.UseVisualStyleBackColor = false;
+            UpdateButton.Click += UpdateUserButton_Click;
             // 
-            // button2
+            // DeleteButton
             // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImage = Properties.Resources.button1;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Microsoft PhagsPa", 12F);
-            button2.Location = new Point(34, 179);
-            button2.Name = "button2";
-            button2.Size = new Size(113, 39);
-            button2.TabIndex = 4;
-            button2.Text = "Delete";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            DeleteButton.BackgroundImage = Properties.Resources.button1;
+            DeleteButton.BackgroundImageLayout = ImageLayout.Stretch;
+            DeleteButton.FlatStyle = FlatStyle.Flat;
+            DeleteButton.Font = new Font("Microsoft PhagsPa", 12F);
+            DeleteButton.Location = new Point(34, 162);
+            DeleteButton.Name = "DeleteButton";
+            DeleteButton.Size = new Size(113, 39);
+            DeleteButton.TabIndex = 4;
+            DeleteButton.Text = "Delete";
+            DeleteButton.UseVisualStyleBackColor = false;
+            DeleteButton.Click += button2_Click;
             // 
-            // button3
+            // AddUsersButton
             // 
-            button3.BackColor = Color.Transparent;
-            button3.BackgroundImage = Properties.Resources.button1;
-            button3.BackgroundImageLayout = ImageLayout.Stretch;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Microsoft PhagsPa", 12F);
-            button3.Location = new Point(34, 55);
-            button3.Name = "button3";
-            button3.Size = new Size(113, 39);
-            button3.TabIndex = 5;
-            button3.Text = "Add";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            AddUsersButton.BackColor = Color.Transparent;
+            AddUsersButton.BackgroundImage = Properties.Resources.button1;
+            AddUsersButton.BackgroundImageLayout = ImageLayout.Stretch;
+            AddUsersButton.FlatStyle = FlatStyle.Flat;
+            AddUsersButton.Font = new Font("Microsoft PhagsPa", 12F);
+            AddUsersButton.Location = new Point(34, 35);
+            AddUsersButton.Name = "AddUsersButton";
+            AddUsersButton.Size = new Size(113, 39);
+            AddUsersButton.TabIndex = 5;
+            AddUsersButton.Text = "Add";
+            AddUsersButton.UseVisualStyleBackColor = false;
+            AddUsersButton.Click += AddUserButton_Click;
             // 
             // Users
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.user2;
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(747, 403);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Controls.Add(listBox1);
-            DoubleBuffered = true;
+            ClientSize = new Size(772, 557);
+            Controls.Add(AddUsersButton);
+            Controls.Add(DeleteButton);
+            Controls.Add(UpdateButton);
+            Controls.Add(UsernameTextBox);
+            Controls.Add(UsernameLabel);
+            Controls.Add(UsersListBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Users";
             Padding = new Padding(2);
             StartPosition = FormStartPosition.CenterScreen;
@@ -143,11 +138,11 @@
 
         #endregion
 
-        private ListBox listBox1;
-        private Label label1;
-        private TextBox textBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private ListBox UsersListBox;
+        private Label UsernameLabel;
+        private TextBox UsernameTextBox;
+        private Button UpdateButton;
+        private Button DeleteButton;
+        private Button AddUsersButton;
     }
 }

@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             label1 = new Label();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
+            LoginComboBox = new ComboBox();
+            LoginButton = new Button();
+            UsersButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -46,51 +46,50 @@
             label1.TabIndex = 0;
             label1.Text = "Select a user:";
             // 
-            // comboBox1
+            // LoginComboBox
             // 
-            comboBox1.BackColor = Color.Cornsilk;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Microsoft PhagsPa", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.ForeColor = Color.Black;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.ItemHeight = 29;
-            comboBox1.Location = new Point(306, 215);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(160, 37);
-            comboBox1.TabIndex = 1;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            LoginComboBox.BackColor = Color.Cornsilk;
+            LoginComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            LoginComboBox.Font = new Font("Microsoft PhagsPa", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LoginComboBox.ForeColor = Color.Black;
+            LoginComboBox.FormattingEnabled = true;
+            LoginComboBox.ItemHeight = 29;
+            LoginComboBox.Location = new Point(306, 215);
+            LoginComboBox.Name = "LoginComboBox";
+            LoginComboBox.Size = new Size(160, 37);
+            LoginComboBox.TabIndex = 1;
             // 
-            // button1
+            // LoginButton
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImage = Properties.Resources.button1;
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft PhagsPa", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(306, 258);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(160, 54);
-            button1.TabIndex = 2;
-            button1.Text = "Log in";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            LoginButton.BackColor = Color.Transparent;
+            LoginButton.BackgroundImage = (Image)resources.GetObject("LoginButton.BackgroundImage");
+            LoginButton.BackgroundImageLayout = ImageLayout.Zoom;
+            LoginButton.FlatStyle = FlatStyle.Flat;
+            LoginButton.Font = new Font("Microsoft PhagsPa", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LoginButton.Location = new Point(306, 258);
+            LoginButton.Margin = new Padding(0);
+            LoginButton.Name = "LoginButton";
+            LoginButton.Size = new Size(160, 54);
+            LoginButton.TabIndex = 2;
+            LoginButton.Text = "Log in";
+            LoginButton.UseVisualStyleBackColor = false;
+            LoginButton.Click += LoginButton_Click;
             // 
-            // button2
+            // UsersButton
             // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImage = Properties.Resources.button1;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Microsoft PhagsPa", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(280, 322);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(203, 42);
-            button2.TabIndex = 3;
-            button2.Text = "Modify users";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            UsersButton.BackColor = Color.Transparent;
+            UsersButton.BackgroundImage = Properties.Resources.button1;
+            UsersButton.BackgroundImageLayout = ImageLayout.Stretch;
+            UsersButton.FlatStyle = FlatStyle.Flat;
+            UsersButton.Font = new Font("Microsoft PhagsPa", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UsersButton.Location = new Point(280, 322);
+            UsersButton.Margin = new Padding(0);
+            UsersButton.Name = "UsersButton";
+            UsersButton.Size = new Size(203, 42);
+            UsersButton.TabIndex = 3;
+            UsersButton.Text = "Modify users";
+            UsersButton.UseVisualStyleBackColor = false;
+            UsersButton.Click += UsersButton_Click;
             // 
             // Login
             // 
@@ -99,13 +98,14 @@
             BackgroundImage = Properties.Resources.login2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(747, 478);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(comboBox1);
+            Controls.Add(UsersButton);
+            Controls.Add(LoginButton);
+            Controls.Add(LoginComboBox);
             Controls.Add(label1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Login";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
@@ -117,8 +117,8 @@
         #endregion
 
         private Label label1;
-        private ComboBox comboBox1;
-        private Button button1;
-        private Button button2;
+        private ComboBox LoginComboBox;
+        private Button LoginButton;
+        private Button UsersButton;
     }
 }

@@ -7,97 +7,118 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JukeBoxd.BusinessLayer;
 using JukeBoxd.Models;
 
 namespace JukeBoxd.Forms
 {
+    /// <summary>
+    /// Represents the main form of the application.
+    /// Provides functionality for managing user entries, including adding, updating, deleting, and previewing songs.
+    /// </summary>
     public partial class Main : Form
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Main"/> class.
+        /// Sets up the UI components and their initial properties.
         /// </summary>
         public Main()
         {
             InitializeComponent();
 
-            this.BackgroundImage = Properties.Resources.main3;
-            this.BackColor = Color.FromArgb(230, 218, 206);
-            //button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button1.FlatAppearance.BorderSize = 0;
-            //button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button2.FlatAppearance.BorderSize = 0;
-           // button3.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button3.FlatAppearance.BorderSize = 0;
-            button4.FlatAppearance.BorderSize = 0;
-            button5.FlatAppearance.BorderSize = 0;
-            dataGridView1.BackgroundColor = Color.FromArgb(224,224,224);
-            textBox1.BackColor = Color.FromArgb(224,224,224);
+            AddMainButton.FlatAppearance.BorderSize = 0;
+            UpdateMainButton.FlatAppearance.BorderSize = 0;
+            DeleteMainButton.FlatAppearance.BorderSize = 0;
+            PreviewButton.FlatAppearance.BorderSize = 0;
+            MainDataGridView.BackgroundColor = Color.FromArgb(255, 233, 205);
+            ReviewLabel.BackColor = Color.FromArgb(255, 233, 205);
+            Icon = Program.Icon;
         }
+
         BindingSource source = new BindingSource();
+
         /// <summary>
         /// Handles the Load event of the Main form.
         /// Sets the data source of the DataGridView to the current user's entries.
+        /// Configures the visibility of specific columns and loads the first entry's album cover and review.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Main_Load(object sender, EventArgs e)
         {
-            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser.Id));
-            source = new BindingSource(entries, null);
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = source;
-            dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[1].Visible = false;
-            dataGridView1.Columns[7].Visible = false;
-            dataGridView1.Columns[8].Visible = false;
-            dataGridView1.Columns[9].Visible = false;
+            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id));
+            source = new BindingSource(entries, null!);
+            MainDataGridView.AutoGenerateColumns = true;
+            MainDataGridView.DataSource = source;
+            MainDataGridView.Columns[0].Visible = false;
+            MainDataGridView.Columns[1].Visible = false;
+            MainDataGridView.Columns[7].Visible = false;
+            MainDataGridView.Columns[8].Visible = false;
+            MainDataGridView.Columns[9].Visible = false;
+            if (MainDataGridView.Rows.Count > 0)
+            {
+                MainDataGridView.Rows[0].Cells[2].Selected = true;
+                var firstRow = MainDataGridView.Rows[0];
+                if (firstRow.Cells[8].Value != null && !string.IsNullOrEmpty(firstRow.Cells[8].Value!.ToString()))
+                {
+                    var track = Program.spotify.Tracks.Get(firstRow.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
+                    ReviewLabel.Text = firstRow.Cells[7].Value!.ToString();
+                    AlbumCoverPictureBox.Load(track);
+                }
+            }
         }
 
         /// <summary>
-        /// Handles the Click event of button1.
+        /// Handles the Click event of the Add button.
         /// Opens the Add form to allow the user to add a new entry.
+        /// Refreshes the DataGridView after a new entry is added.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void button1_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
-            Add addForm = new Add();
+            Add addForm = new();
             addForm.SongAdded += (s, args) => UpdateDataGridView();
             addForm.ShowDialog();
         }
 
         /// <summary>
         /// Updates the DataGridView with the latest entries for the current user.
-        /// This method is used to refresh the data in real-time after adding a new entry.
+        /// This method is used to refresh the data in real-time after adding or modifying an entry.
         /// </summary>
-        /// <param name="entry">The new <see cref="Entry"/> to be added.</param>
         public void UpdateDataGridView()
         {
-            if (dataGridView1.SelectedRows == null)
+            if (MainDataGridView.SelectedRows == null)
             {
                 MessageBox.Show("Please select a row from the table.", "Update", MessageBoxButtons.OK);
             }
-            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser.Id));
-            source = new BindingSource(entries, null);
-            dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = source;
-            dataGridView1_CellClick(null, new DataGridViewCellEventArgs(0, 0));
-
+            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id));
+            source = new BindingSource(entries, null!);
+            MainDataGridView.AutoGenerateColumns = true;
+            MainDataGridView.DataSource = source;
+            MainDataGridView_CellClick(null!, new DataGridViewCellEventArgs(0, 0));
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the Update button.
+        /// Opens the Update form to allow the user to modify the selected entry.
+        /// Refreshes the DataGridView after the entry is updated.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (dataGridView1.CurrentRow == null)
+                if (MainDataGridView.CurrentRow == null)
                 {
                     throw new InvalidOperationException("No row selected.");
                 }
-                Update update = new Update(dataGridView1.CurrentRow.Cells[2].Value.ToString(),//title 
-                dataGridView1.CurrentRow.Cells[3].Value.ToString(), //author
-                DateOnly.Parse(dataGridView1.CurrentRow.Cells[5].Value.ToString()), //date
-                (int)dataGridView1.CurrentRow.Cells[0].Value,
-                dataGridView1.CurrentRow.Cells[7].Value.ToString()); //id
+                Update update = new(MainDataGridView.CurrentRow.Cells[2].Value!.ToString()!, // title
+                    MainDataGridView.CurrentRow.Cells[3].Value!.ToString()!, // author
+                    DateOnly.Parse(MainDataGridView.CurrentRow.Cells[5].Value!.ToString()!), // date
+                    (int)MainDataGridView.CurrentRow.Cells[0].Value!, // id
+                    MainDataGridView.CurrentRow.Cells[7].Value!.ToString()!); // review
                 update.SongUpdated += (s, args) => UpdateDataGridView();
                 update.Show();
             }
@@ -107,54 +128,78 @@ namespace JukeBoxd.Forms
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the Delete button.
+        /// Deletes the selected entry from the database and refreshes the DataGridView.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
-
             try
             {
-                if (dataGridView1.CurrentRow == null)
+                if (MainDataGridView.CurrentRow == null)
                 {
                     throw new InvalidOperationException("No row selected.");
                 }
-                EntryMid.RemoveEntry((int)dataGridView1.CurrentRow.Cells[0].Value);
+                EntryMid.RemoveEntry((int)MainDataGridView.CurrentRow.Cells[0].Value!);
                 UpdateDataGridView();
             }
-            catch (InvalidOperationException) 
+            catch (InvalidOperationException)
             {
                 MessageBox.Show("Please select a song from the table.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the CellClick event of the DataGridView.
+        /// Updates the album cover and review label based on the selected row.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        private void MainDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Environment.Exit(0);
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var row = dataGridView1.Rows[e.RowIndex];
-            if (row.Cells[7].Value != null)
+            if (e.RowIndex >= 0)
             {
-                if (row.Cells[8].Value.ToString() != string.Empty)
+                var row = MainDataGridView.Rows[e.RowIndex];
+                if (row.Cells[7].Value != null && MainDataGridView.Rows.Count > 0)
                 {
-                    textBox1.Text = row.Cells[7].Value.ToString();
-                    var track = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result.Album.Images[0].Url;
-                    pictureBox1.Load(track);
+                    if (row.Cells[8].Value!.ToString() != string.Empty)
+                    {
+                        ReviewLabel.Text = row.Cells[7].Value!.ToString();
+                        var track = Program.spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
+                        AlbumCoverPictureBox.Load(track);
+                    }
                 }
             }
         }
 
-        private async void button5_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the Preview button.
+        /// Plays a preview of the selected song using the Deezer API.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private async void PreviewButton_Click(object sender, EventArgs e)
         {
-            var row = dataGridView1.CurrentRow;
-            var selectedTrack = Program.spotify.Tracks.Get(row.Cells[8].Value.ToString()).Result;
-            var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack);//selectedTrack.ExternalIds["isrc"]);
-            if (deezerTrack is not null)
+            var row = MainDataGridView.CurrentRow!;
+            if (row.Cells[8].Value != null)
             {
-                await DeezerClient.PlayPreviewAsync(deezerTrack.Result.PreviewURL);
+                var selectedTrack = Program.spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result;
+                var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack);
+                if (deezerTrack is not null)
+                {
+                    await DeezerClient.PlayPreviewAsync(deezerTrack.PreviewURL!);
+                }
             }
         }
 
+        /// <summary>
+        /// Handles the FormClosed event of the Main form.
+        /// Exits the application when the form is closed.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);

@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            button1 = new Button();
+            UpdateButton = new Button();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
@@ -42,11 +40,13 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             label3 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            textBox1 = new TextBox();
-            label4 = new Label();
-            textBox2 = new TextBox();
-            label5 = new Label();
+            EntryDateTimePicker = new DateTimePicker();
+            EditingTextBox = new TextBox();
+            ReviewTextBox = new TextBox();
+            EditingLabel = new Label();
+            label2 = new Label();
+            EntryDateLabel = new Label();
+            ReviewLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
@@ -59,36 +59,37 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // UpdateButton
+            
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft PhagsPa", 12F);
-            label1.Location = new Point(38, 26);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 26);
-            label1.TabIndex = 0;
-            label1.Text = "Editing:";
+            UpdateButton.BackgroundImage = Properties.Resources.button1;
+            UpdateButton.BackgroundImageLayout = ImageLayout.Stretch;
+            UpdateButton.FlatStyle = FlatStyle.Flat;
+            UpdateButton.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UpdateButton.Location = new Point(289, 473);
+            UpdateButton.Name = "UpdateButton";
+            UpdateButton.Size = new Size(120, 39);
+            UpdateButton.TabIndex = 4;
+            UpdateButton.Text = "Update";
+            UpdateButton.UseVisualStyleBackColor = true;
+            UpdateButton.Click += UpdateButton_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Microsoft PhagsPa", 12F);
-            label2.Location = new Point(38, 116);
+            label2.Location = new Point(47, 104);
             label2.Name = "label2";
-            label2.Size = new Size(135, 26);
+            label2.Size = new Size(102, 20);
             label2.TabIndex = 1;
             label2.Text = "Change rating";
             // 
             // button1
             // 
             button1.BackgroundImage = Properties.Resources.button1;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(145, 489);
+            button1.BackgroundImageLayout = ImageLayout.Stretch
+            button1.Location = new Point(155, 486);
             button1.Name = "button1";
-            button1.Size = new Size(129, 43);
+            button1.Size = new Size(94, 29);
             button1.TabIndex = 4;
             button1.Text = "Update";
             button1.UseVisualStyleBackColor = true;
@@ -96,8 +97,9 @@
             // 
             // pictureBox5
             // 
+            pictureBox5.BackColor = Color.Transparent;
             pictureBox5.Image = Properties.Resources.newEStar2;
-            pictureBox5.Location = new Point(184, 153);
+            pictureBox5.Location = new Point(189, 113);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(33, 62);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -106,8 +108,9 @@
             // 
             // pictureBox6
             // 
+            pictureBox6.BackColor = Color.Transparent;
             pictureBox6.Image = Properties.Resources.newEStar1;
-            pictureBox6.Location = new Point(216, 153);
+            pictureBox6.Location = new Point(221, 113);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(33, 62);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -116,19 +119,20 @@
             // 
             // pictureBox7
             // 
+            pictureBox7.BackColor = Color.Transparent;
             pictureBox7.Image = Properties.Resources.newEStar2;
-            pictureBox7.Location = new Point(255, 153);
+            pictureBox7.Location = new Point(260, 113);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(33, 62);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox7.TabIndex = 10;
             pictureBox7.TabStop = false;
-            pictureBox7.Click += pictureBox7_Click;
             // 
             // pictureBox8
             // 
+            pictureBox8.BackColor = Color.Transparent;
             pictureBox8.Image = Properties.Resources.newEStar1;
-            pictureBox8.Location = new Point(287, 153);
+            pictureBox8.Location = new Point(292, 113);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(33, 62);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -137,8 +141,9 @@
             // 
             // pictureBox9
             // 
+            pictureBox9.BackColor = Color.Transparent;
             pictureBox9.Image = Properties.Resources.newEStar2;
-            pictureBox9.Location = new Point(326, 153);
+            pictureBox9.Location = new Point(331, 113);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(33, 62);
             pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -147,8 +152,9 @@
             // 
             // pictureBox10
             // 
+            pictureBox10.BackColor = Color.Transparent;
             pictureBox10.Image = Properties.Resources.newEStar1;
-            pictureBox10.Location = new Point(358, 153);
+            pictureBox10.Location = new Point(363, 113);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(33, 62);
             pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -157,8 +163,9 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.BackColor = Color.Transparent;
             pictureBox3.Image = Properties.Resources.newEStar2;
-            pictureBox3.Location = new Point(113, 153);
+            pictureBox3.Location = new Point(118, 113);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(33, 62);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -167,8 +174,9 @@
             // 
             // pictureBox4
             // 
+            pictureBox4.BackColor = Color.Transparent;
             pictureBox4.Image = Properties.Resources.newEStar1;
-            pictureBox4.Location = new Point(145, 153);
+            pictureBox4.Location = new Point(150, 113);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(33, 62);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -177,8 +185,9 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.newEStar2;
-            pictureBox1.Location = new Point(42, 153);
+            pictureBox1.Location = new Point(47, 113);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(33, 62);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -187,8 +196,9 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources.newEStar1;
-            pictureBox2.Location = new Point(74, 153);
+            pictureBox2.Location = new Point(79, 113);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(33, 62);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -198,71 +208,94 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(155, 106);
+            label3.Location = new Point(150, 89);
             label3.Name = "label3";
             label3.Size = new Size(0, 20);
             label3.TabIndex = 19;
             // 
-            // dateTimePicker1
+            // EntryDateTimePicker
             // 
-            dateTimePicker1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker1.Location = new Point(41, 276);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(350, 33);
-            dateTimePicker1.TabIndex = 20;
+            EntryDateTimePicker.Location = new Point(47, 408);
+            EntryDateTimePicker.Name = "EntryDateTimePicker";
+            EntryDateTimePicker.Size = new Size(627, 27);
+            EntryDateTimePicker.TabIndex = 20;
             // 
-            // textBox1
+            // EditingTextBox
             // 
-            textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(42, 70);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(350, 33);
-            textBox1.TabIndex = 21;
+            EditingTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            EditingTextBox.Location = new Point(47, 45);
+            EditingTextBox.Name = "EditingTextBox";
+            EditingTextBox.ReadOnly = true;
+            EditingTextBox.Size = new Size(627, 34);
+            EditingTextBox.TabIndex = 21;
             // 
-            // label4
+            // ReviewTextBox
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Microsoft PhagsPa", 12F);
-            label4.Location = new Point(38, 237);
-            label4.Name = "label4";
-            label4.Size = new Size(172, 26);
-            label4.TabIndex = 22;
-            label4.Text = "Change entry date";
+            ReviewTextBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ReviewTextBox.Location = new Point(47, 233);
+            ReviewTextBox.Multiline = true;
+            ReviewTextBox.Name = "ReviewTextBox";
+            ReviewTextBox.Size = new Size(627, 112);
+            ReviewTextBox.TabIndex = 23;
             // 
-            // textBox2
+            // EditingLabel
             // 
-            textBox2.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(38, 362);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(350, 112);
-            textBox2.TabIndex = 23;
+            EditingLabel.AutoSize = true;
+            EditingLabel.BackColor = Color.Transparent;
+            EditingLabel.Font = new Font("Microsoft PhagsPa", 12F);
+            EditingLabel.Location = new Point(47, 9);
+            EditingLabel.Name = "EditingLabel";
+            EditingLabel.Size = new Size(78, 26);
+            EditingLabel.TabIndex = 24;
+            EditingLabel.Text = "Editing:";
             // 
-            // label5
+            // label2
             // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Microsoft PhagsPa", 12F);
-            label5.Location = new Point(38, 326);
-            label5.Name = "label5";
-            label5.Size = new Size(139, 26);
-            label5.TabIndex = 24;
-            label5.Text = "Change review";
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Microsoft PhagsPa", 12F);
+            label2.Location = new Point(47, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(73, 26);
+            label2.TabIndex = 25;
+            label2.Text = "Rating:";
+            // 
+            // EntryDateLabel
+            // 
+            EntryDateLabel.AutoSize = true;
+            EntryDateLabel.BackColor = Color.Transparent;
+            EntryDateLabel.Font = new Font("Microsoft PhagsPa", 12F);
+            EntryDateLabel.Location = new Point(47, 370);
+            EntryDateLabel.Name = "EntryDateLabel";
+            EntryDateLabel.Size = new Size(105, 26);
+            EntryDateLabel.TabIndex = 26;
+            EntryDateLabel.Text = "Entry date:";
+            // 
+            // ReviewLabel
+            // 
+            ReviewLabel.AutoSize = true;
+            ReviewLabel.BackColor = Color.Transparent;
+            ReviewLabel.Font = new Font("Microsoft PhagsPa", 12F);
+            ReviewLabel.Location = new Point(47, 192);
+            ReviewLabel.Name = "ReviewLabel";
+            ReviewLabel.Size = new Size(77, 26);
+            ReviewLabel.TabIndex = 27;
+            ReviewLabel.Text = "Review:";
             // 
             // Update
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.update;
+            BackgroundImage = Properties.Resources.background4;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(442, 553);
-            Controls.Add(label5);
-            Controls.Add(textBox2);
-            Controls.Add(label4);
-            Controls.Add(textBox1);
-            Controls.Add(dateTimePicker1);
+            ClientSize = new Size(744, 529);
+            Controls.Add(ReviewLabel);
+            Controls.Add(EntryDateLabel);
+            Controls.Add(label2);
+            Controls.Add(EditingLabel);
+            Controls.Add(ReviewTextBox);
+            Controls.Add(EditingTextBox);
+            Controls.Add(EntryDateTimePicker);
             Controls.Add(label3);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox2);
@@ -274,13 +307,11 @@
             Controls.Add(pictureBox6);
             Controls.Add(pictureBox7);
             Controls.Add(pictureBox8);
-            Controls.Add(button1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            DoubleBuffered = true;
+            Controls.Add(UpdateButton);
+            MaximizeBox = false;
             Name = "Update";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Update";
+            Text = "JukeBoxd";
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -296,10 +327,7 @@
         }
 
         #endregion
-
-        private Label label1;
-        private Label label2;
-        private Button button1;
+        private Button UpdateButton;
         private PictureBox pictureBox5;
         private PictureBox pictureBox6;
         private PictureBox pictureBox7;
@@ -311,10 +339,12 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label3;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox1;
-        private Label label4;
-        private TextBox textBox2;
-        private Label label5;
+        private DateTimePicker EntryDateTimePicker;
+        private TextBox EditingTextBox;
+        private TextBox ReviewTextBox;
+        private Label EditingLabel;
+        private Label label2;
+        private Label EntryDateLabel;
+        private Label ReviewLabel;
     }
 }

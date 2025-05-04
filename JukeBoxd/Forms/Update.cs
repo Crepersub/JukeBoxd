@@ -7,43 +7,104 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JukeBoxd.BusinessLayer;
 using JukeBoxd.Models;
 
 namespace JukeBoxd.Forms
 {
     public partial class Update : Form
     {
+        /// <summary>
+        /// Array of PictureBox controls representing the stars for rating.
+        /// </summary>
         private PictureBox[] stars;
+
+        /// <summary>
+        /// The current rating value, calculated based on the selected stars.
+        /// </summary>
         private float rating = 0;
-        public event EventHandler SongUpdated;
+
+        /// <summary>
+        /// Event triggered when a song is updated.
+        /// </summary>
+        public event EventHandler? SongUpdated;
+
+        /// <summary>
+        /// Indicates whether the rating has been set by the user.
+        /// </summary>
         private bool isRatingSet = false;
+
+        /// <summary>
+        /// The number of stars currently selected by the user.
+        /// </summary>
         private int selectedCount = 0;
+
+        /// <summary>
+        /// The ID of the selected song entry being updated.
+        /// </summary>
         private int selectedID = 0;
+
+        /// <summary>
+        /// Dictionary storing the original positions of the stars for animation purposes.
+        /// </summary>
         private Dictionary<PictureBox, Point> originalPositions = new Dictionary<PictureBox, Point>();
-        private System.Windows.Forms.Timer animationTimer;
-        private PictureBox hoveredStar;
+
+        /// <summary>
+        /// Timer used for animating the hover effect on a single star.
+        /// </summary>
+        private System.Windows.Forms.Timer? animationTimer;
+
+        /// <summary>
+        /// The star currently being hovered over by the user.
+        /// </summary>
+        private PictureBox? hoveredStar;
+
+        /// <summary>
+        /// The current step of the animation for the hovered star.
+        /// </summary>
         private int animationStep = 0;
+
+        /// <summary>
+        /// Indicates whether the hovered star is moving up in the animation.
+        /// </summary>
         private bool goingUp = true;
+
+        /// <summary>
+        /// List of stars that are currently "jumping" in the group animation.
+        /// </summary>
         private List<PictureBox> jumpingStars = new List<PictureBox>();
-        private System.Windows.Forms.Timer groupJumpTimer;
+
+        /// <summary>
+        /// Timer used for animating the group jump effect for selected stars.
+        /// </summary>
+        private System.Windows.Forms.Timer? groupJumpTimer;
+        /// <summary>
+        /// The current step of the group animation for the selected stars.
+        /// </summary>
         private int groupAnimationStep = 0;
+
+        /// <summary>
+        /// Indicates whether the group of stars is moving up in the group animation.
+        /// </summary>
         private bool groupGoingUp = true;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Update"/> form.
+        /// </summary>
+        /// <param name="title">The title of the song being updated.</param>
+        /// <param name="author">The author of the song being updated.</param>
+        /// <param name="date">The date associated with the song entry.</param>
+        /// <param name="id">The unique identifier of the song entry being updated.</param>
+        /// <param name="review">The review text for the song.</param>
         public Update(string title, string author, DateOnly date, int id, string review)
         {
             InitializeComponent();
-
-            this.BackgroundImage = Properties.Resources.update;
-            textBox1.BackColor = Color.FromArgb(224, 224, 224);
-            textBox2.BackColor = Color.FromArgb(224, 224, 224);
-            dateTimePicker1.CalendarMonthBackground = Color.FromArgb(224, 224, 224);
-            dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(224, 224, 224);
-
-            textBox1.Text = $"{title} by {author}";
-            textBox2.Text = review;
+            EditingTextBox.Text = $"{title} by {author}";
+            ReviewTextBox.Text = review;
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
             this.BackColor = Color.FromArgb(230, 218, 206);
-            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button1.FlatAppearance.BorderSize = 3;
+            UpdateButton.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            UpdateButton.FlatAppearance.BorderSize = 3;
 
             foreach (var star in stars)
             {
@@ -62,7 +123,7 @@ namespace JukeBoxd.Forms
                     StartStarAnimation();
                 };
 
-                    stars[i].Click += (s, e) =>
+                stars[i].Click += (s, e) =>
                 {
                     rating = (index + 1) / 2f;
                     selectedCount = index + 1;
@@ -86,13 +147,25 @@ namespace JukeBoxd.Forms
                     }
                 };
             }
-            dateTimePicker1.Value = date.ToDateTime(new TimeOnly(0, 0));
+            EntryDateTimePicker.Value = date.ToDateTime(new TimeOnly(0, 0));
             selectedID = id;
+            EntryDateLabel.BackColor = Color.FromArgb(255, 233, 205);
+            UpdateButton.FlatAppearance.BorderSize = 0;
+            Icon = Program.Icon;
         }
+
+        /// <summary>
+        /// Sets the rating based on the number of half-stars selected.
+        /// </summary>
+        /// <param name="halfStarIndex">The index of the half-star selected.</param>
         private void SetRating(int halfStarIndex)
         {
             rating = halfStarIndex * 0.5f; // 1 half-star = 0.5 rating
         }
+
+        /// <summary>
+        /// Resets all stars to their default (unselected) state.
+        /// </summary>
         private void ResetStars()
         {
             for (int i = 0; i < stars.Length; i++)
@@ -105,6 +178,10 @@ namespace JukeBoxd.Forms
                     stars[i].Image = Properties.Resources.newEStar1;
             }
         }
+        /// <summary>
+        /// Highlights the stars up to the specified count, changing their appearance to indicate selection.
+        /// </summary>
+        /// <param name="count">The number of stars to highlight.</param>
         private void HighlightStars(int count)
         {
             for (int i = 0; i < stars.Length; i++)
@@ -129,6 +206,9 @@ namespace JukeBoxd.Forms
                 }
             }
         }
+        /// <summary>
+        /// Starts the animation for the star currently being hovered over, creating a "jumping" effect.
+        /// </summary>
         private void StartStarAnimation()
         {
             if (animationTimer != null)
@@ -137,7 +217,7 @@ namespace JukeBoxd.Forms
                 animationTimer.Dispose();
             }
 
-            animationTimer = new System.Windows.Forms.Timer();
+            animationTimer = new();
             animationTimer.Interval = 20; // Faster animation, 20 ms tick
             animationTimer.Tick += (s, e) =>
             {
@@ -171,6 +251,9 @@ namespace JukeBoxd.Forms
             };
             animationTimer.Start();
         }
+        /// <summary>
+        /// Starts the group animation for all selected stars, creating a synchronized "jumping" effect.
+        /// </summary>
         private void StartGroupJump()
         {
             if (groupJumpTimer != null)
@@ -189,7 +272,7 @@ namespace JukeBoxd.Forms
             groupAnimationStep = 0;
             groupGoingUp = true;
 
-            groupJumpTimer = new System.Windows.Forms.Timer();
+            groupJumpTimer = new();
             groupJumpTimer.Interval = 20; // Fast animation
             groupJumpTimer.Tick += (s, e) =>
             {
@@ -233,16 +316,16 @@ namespace JukeBoxd.Forms
 
             groupJumpTimer.Start();
         }
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the click event for the Update button, updating the song entry and closing the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
+        private void UpdateButton_Click(object sender, EventArgs e)
         {
-            EntryMid.UpdateEntry(selectedID, rating,DateOnly.FromDateTime(dateTimePicker1.Value),textBox2.Text);
+            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
             SongUpdated?.Invoke(this, EventArgs.Empty);
             this.Close();
-        }
-
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
