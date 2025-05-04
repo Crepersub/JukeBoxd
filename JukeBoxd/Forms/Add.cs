@@ -343,13 +343,17 @@ namespace JukeBoxd.Forms
         {
             if (InvokeRequired)
             {
-                Invoke(new Action(() => PerformSearch()));
+                Invoke(new Action(() =>
+                {
+                    PerformSearch();
+                    SongComboBox.DroppedDown = true;
+                }));
             }
             else
             {
                 PerformSearch();
+                SongComboBox.DroppedDown = true;
             }
-            SongComboBox.DroppedDown = true;
         }
 
         /// <summary>
