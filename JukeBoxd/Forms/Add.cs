@@ -41,9 +41,14 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
+            this.BackgroundImage = Properties.Resources.add2;
             this.BackColor = Color.FromArgb(230, 218, 206);
-            button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button1.FlatAppearance.BorderSize = 3;
+            //button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            button1.FlatAppearance.BorderSize = 0;
+            textBox1.BackColor = Color.FromArgb(224, 224, 224);
+            comboBox1.BackColor = Color.FromArgb(224, 224, 224);
+            dateTimePicker1.CalendarMonthBackground = Color.FromArgb(224, 224, 224);
+            dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(224, 224, 224);
 
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
                                 pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };

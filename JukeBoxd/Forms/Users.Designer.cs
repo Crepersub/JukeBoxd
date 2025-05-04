@@ -39,18 +39,20 @@
             // listBox1
             // 
             listBox1.BackColor = Color.DarkSeaGreen;
+            listBox1.BorderStyle = BorderStyle.FixedSingle;
             listBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(453, 18);
+            listBox1.Location = new Point(438, 35);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(287, 342);
+            listBox1.Size = new Size(287, 314);
             listBox1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(44, 247);
+            label1.Location = new Point(34, 262);
             label1.Name = "label1";
             label1.Size = new Size(103, 26);
             label1.TabIndex = 1;
@@ -59,8 +61,9 @@
             // 
             // textBox1
             // 
+            textBox1.BackColor = SystemColors.Menu;
             textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(44, 290);
+            textBox1.Location = new Point(34, 306);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(337, 33);
             textBox1.TabIndex = 2;
@@ -71,9 +74,11 @@
             // button1
             // 
             button1.BackColor = Color.Transparent;
+            button1.BackgroundImage = Properties.Resources.button1;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(34, 100);
+            button1.Location = new Point(34, 117);
             button1.Name = "button1";
             button1.Size = new Size(113, 39);
             button1.TabIndex = 3;
@@ -84,9 +89,11 @@
             // button2
             // 
             button2.BackColor = Color.Transparent;
+            button2.BackgroundImage = Properties.Resources.button1;
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Microsoft PhagsPa", 12F);
-            button2.Location = new Point(34, 162);
+            button2.Location = new Point(34, 179);
             button2.Name = "button2";
             button2.Size = new Size(113, 39);
             button2.TabIndex = 4;
@@ -97,9 +104,11 @@
             // button3
             // 
             button3.BackColor = Color.Transparent;
+            button3.BackgroundImage = Properties.Resources.button1;
+            button3.BackgroundImageLayout = ImageLayout.Stretch;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Microsoft PhagsPa", 12F);
-            button3.Location = new Point(34, 35);
+            button3.Location = new Point(34, 55);
             button3.Name = "button3";
             button3.Size = new Size(113, 39);
             button3.TabIndex = 5;
@@ -111,13 +120,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(772, 383);
+            BackgroundImage = Properties.Resources.user2;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(747, 403);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(listBox1);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Users";
             Padding = new Padding(2);

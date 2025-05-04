@@ -62,7 +62,7 @@
             // 
             comboBox1.Font = new Font("Microsoft PhagsPa", 12F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(53, 61);
+            comboBox1.Location = new Point(46, 58);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(349, 34);
             comboBox1.TabIndex = 0;
@@ -73,7 +73,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft PhagsPa", 12F);
-            label1.Location = new Point(53, 22);
+            label1.Location = new Point(43, 19);
             label1.Name = "label1";
             label1.Size = new Size(124, 26);
             label1.TabIndex = 1;
@@ -82,9 +82,11 @@
             // button1
             // 
             button1.BackColor = Color.Transparent;
+            button1.BackgroundImage = Properties.Resources.button1;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(156, 454);
+            button1.Location = new Point(162, 459);
             button1.Name = "button1";
             button1.Size = new Size(120, 39);
             button1.TabIndex = 2;
@@ -95,8 +97,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Microsoft PhagsPa", 12F);
-            label2.Location = new Point(50, 108);
+            label2.Location = new Point(43, 110);
             label2.Name = "label2";
             label2.Size = new Size(69, 26);
             label2.TabIndex = 3;
@@ -105,7 +108,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.newEStar2;
-            pictureBox1.Location = new Point(53, 147);
+            pictureBox1.Location = new Point(46, 144);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(33, 62);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -115,7 +118,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.newEStar1;
-            pictureBox2.Location = new Point(85, 147);
+            pictureBox2.Location = new Point(78, 144);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(33, 62);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -125,7 +128,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.newEStar2;
-            pictureBox3.Location = new Point(124, 147);
+            pictureBox3.Location = new Point(117, 144);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(33, 62);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -135,7 +138,7 @@
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.newEStar1;
-            pictureBox4.Location = new Point(156, 147);
+            pictureBox4.Location = new Point(149, 144);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(33, 62);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -145,7 +148,7 @@
             // pictureBox9
             // 
             pictureBox9.Image = Properties.Resources.newEStar2;
-            pictureBox9.Location = new Point(337, 147);
+            pictureBox9.Location = new Point(330, 144);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(33, 62);
             pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -155,7 +158,7 @@
             // pictureBox10
             // 
             pictureBox10.Image = Properties.Resources.newEStar1;
-            pictureBox10.Location = new Point(369, 147);
+            pictureBox10.Location = new Point(362, 144);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(33, 62);
             pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -165,7 +168,7 @@
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.newEStar2;
-            pictureBox5.Location = new Point(195, 147);
+            pictureBox5.Location = new Point(188, 144);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(33, 62);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -175,7 +178,7 @@
             // pictureBox6
             // 
             pictureBox6.Image = Properties.Resources.newEStar1;
-            pictureBox6.Location = new Point(227, 147);
+            pictureBox6.Location = new Point(220, 144);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(33, 62);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -185,7 +188,7 @@
             // pictureBox7
             // 
             pictureBox7.Image = Properties.Resources.newEStar2;
-            pictureBox7.Location = new Point(266, 147);
+            pictureBox7.Location = new Point(259, 144);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(33, 62);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -195,7 +198,7 @@
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.newEStar1;
-            pictureBox8.Location = new Point(298, 147);
+            pictureBox8.Location = new Point(291, 144);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(33, 62);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -213,8 +216,9 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Microsoft PhagsPa", 12F);
-            label4.Location = new Point(50, 232);
+            label4.Location = new Point(43, 229);
             label4.Name = "label4";
             label4.Size = new Size(73, 26);
             label4.TabIndex = 30;
@@ -223,7 +227,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(50, 271);
+            textBox1.Location = new Point(43, 268);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(353, 112);
@@ -231,16 +235,19 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(53, 403);
+            dateTimePicker1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePicker1.Location = new Point(46, 400);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(349, 27);
+            dateTimePicker1.Size = new Size(349, 33);
             dateTimePicker1.TabIndex = 32;
             // 
             // Add
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(451, 530);
+            BackgroundImage = Properties.Resources.add2;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(457, 530);
             Controls.Add(dateTimePicker1);
             Controls.Add(textBox1);
             Controls.Add(label4);
@@ -259,6 +266,7 @@
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(comboBox1);
+            DoubleBuffered = true;
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add";

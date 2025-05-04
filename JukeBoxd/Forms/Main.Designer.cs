@@ -46,12 +46,14 @@
             // button1
             // 
             button1.BackColor = Color.Transparent;
+            button1.BackgroundImage = Properties.Resources.button1;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft PhagsPa", 12F);
-            button1.Location = new Point(29, 31);
+            button1.Location = new Point(29, 57);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
-            button1.Size = new Size(146, 48);
+            button1.Size = new Size(132, 48);
             button1.TabIndex = 1;
             button1.Text = "Add ";
             button1.UseVisualStyleBackColor = false;
@@ -64,23 +66,25 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.DataSource = entryBindingSource;
             dataGridView1.GridColor = Color.Black;
-            dataGridView1.Location = new Point(29, 187);
+            dataGridView1.Location = new Point(29, 151);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(667, 236);
+            dataGridView1.Size = new Size(636, 236);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // button2
             // 
             button2.BackColor = Color.Transparent;
+            button2.BackgroundImage = Properties.Resources.button1;
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Microsoft PhagsPa", 12F);
-            button2.Location = new Point(192, 31);
+            button2.Location = new Point(189, 57);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
-            button2.Size = new Size(131, 48);
+            button2.Size = new Size(132, 48);
             button2.TabIndex = 3;
             button2.Text = "Update ";
             button2.UseVisualStyleBackColor = false;
@@ -89,12 +93,14 @@
             // button3
             // 
             button3.BackColor = Color.Transparent;
+            button3.BackgroundImage = Properties.Resources.button1;
+            button3.BackgroundImageLayout = ImageLayout.Stretch;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Microsoft PhagsPa", 12F);
-            button3.Location = new Point(338, 31);
+            button3.Location = new Point(348, 57);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
-            button3.Size = new Size(137, 48);
+            button3.Size = new Size(132, 48);
             button3.TabIndex = 4;
             button3.Text = "Delete";
             button3.UseVisualStyleBackColor = false;
@@ -102,7 +108,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(854, 31);
+            pictureBox1.Location = new Point(742, 31);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(178, 190);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -112,7 +118,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(854, 227);
+            textBox1.Location = new Point(742, 227);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
@@ -122,12 +128,14 @@
             // button4
             // 
             button4.BackColor = Color.Transparent;
+            button4.BackgroundImage = Properties.Resources.button1;
+            button4.BackgroundImageLayout = ImageLayout.Stretch;
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Microsoft PhagsPa", 12F);
-            button4.Location = new Point(866, 375);
+            button4.Location = new Point(761, 363);
             button4.Margin = new Padding(0);
             button4.Name = "button4";
-            button4.Size = new Size(146, 48);
+            button4.Size = new Size(132, 48);
             button4.TabIndex = 7;
             button4.Text = "Close";
             button4.UseVisualStyleBackColor = false;
@@ -136,12 +144,14 @@
             // button5
             // 
             button5.BackColor = Color.Transparent;
+            button5.BackgroundImage = Properties.Resources.button1;
+            button5.BackgroundImageLayout = ImageLayout.Stretch;
             button5.FlatStyle = FlatStyle.Flat;
             button5.Font = new Font("Microsoft PhagsPa", 12F);
-            button5.Location = new Point(29, 114);
+            button5.Location = new Point(507, 57);
             button5.Margin = new Padding(0);
             button5.Name = "button5";
-            button5.Size = new Size(146, 48);
+            button5.Size = new Size(158, 48);
             button5.TabIndex = 8;
             button5.Text = "Preview song";
             button5.UseVisualStyleBackColor = false;
@@ -151,7 +161,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1079, 448);
+            BackgroundImage = Properties.Resources.main3;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(952, 438);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(textBox1);
@@ -160,7 +172,9 @@
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
+            DoubleBuffered = true;
             Name = "Main";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Main";
             FormClosed += Main_FormClosed;
             Load += Main_Load;

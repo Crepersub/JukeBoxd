@@ -63,7 +63,7 @@
             // button1
             // 
             button1.BackColor = Color.Transparent;
-            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
+            button1.BackgroundImage = Properties.Resources.button1;
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft PhagsPa", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -96,7 +96,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.background1;
+            BackgroundImage = Properties.Resources.login2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(747, 478);
             Controls.Add(button2);
@@ -104,7 +104,7 @@
             Controls.Add(comboBox1);
             Controls.Add(label1);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             SizeGripStyle = SizeGripStyle.Show;

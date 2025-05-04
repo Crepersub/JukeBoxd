@@ -19,14 +19,16 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
+            this.BackgroundImage = Properties.Resources.user2;
             this.BackColor = Color.FromArgb(230, 218, 206);
-            listBox1.BackColor = Color.FromArgb(159, 160, 154);
+            listBox1.BackColor = Color.FromArgb(224,224,224);
+            textBox1.BackColor = Color.FromArgb(224, 224, 224);
             button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button1.FlatAppearance.BorderSize = 3;
+            button1.FlatAppearance.BorderSize = 0;
             button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button2.FlatAppearance.BorderSize = 3;
+            button2.FlatAppearance.BorderSize = 0;
             button3.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            button3.FlatAppearance.BorderSize = 3;
+            button3.FlatAppearance.BorderSize = 0;
         }
 
         private void button3_Click(object sender, EventArgs e)

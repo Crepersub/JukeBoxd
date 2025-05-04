@@ -12,7 +12,8 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
-           // button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
+            this.BackgroundImage = Properties.Resources.login2;
+            // button1.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
             button1.FlatAppearance.BorderSize = 0;
            // button2.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
             button2.FlatAppearance.BorderSize = 0;
@@ -22,7 +23,7 @@ namespace JukeBoxd.Forms
             comboBox1.Location = new Point(255, 155);
             button1.Location = new Point(255, 195);
             button2.Location = new Point(235, 245);
-
+           // this.Icon = Properties.Resources.logo2;
         }
 
         /// <summary>

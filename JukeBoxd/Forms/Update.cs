@@ -31,6 +31,13 @@ namespace JukeBoxd.Forms
         public Update(string title, string author, DateOnly date, int id, string review)
         {
             InitializeComponent();
+
+            this.BackgroundImage = Properties.Resources.update;
+            textBox1.BackColor = Color.FromArgb(224, 224, 224);
+            textBox2.BackColor = Color.FromArgb(224, 224, 224);
+            dateTimePicker1.CalendarMonthBackground = Color.FromArgb(224, 224, 224);
+            dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(224, 224, 224);
+
             textBox1.Text = $"{title} by {author}";
             textBox2.Text = review;
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
