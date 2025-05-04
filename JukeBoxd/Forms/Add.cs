@@ -343,14 +343,19 @@ namespace JukeBoxd.Forms
         {
             if (InvokeRequired)
             {
-                Invoke(new Action(() => PerformSearch()));
+                Invoke(new Action(() =>
+                {
+                    PerformSearch();
+                    SongComboBox.DroppedDown = true;
+                    System.Windows.Forms.Cursor.Current = Cursors.Default;
+                }));
             }
             else
             {
                 PerformSearch();
+                SongComboBox.DroppedDown = true;
+                System.Windows.Forms.Cursor.Current = Cursors.Default;
             }
-            SongComboBox.DroppedDown = true;
-            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default;
         }
 
         /// <summary>
