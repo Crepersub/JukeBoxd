@@ -16,14 +16,14 @@ namespace JukeBoxd.Forms
            
             LoginButton.FlatAppearance.BorderSize = 0;           
             UsersButton.FlatAppearance.BorderSize = 0;
-            comboBox1.BackColor = Color.FromArgb(230, 218, 206);
+            LoginComboBox.BackColor = Color.FromArgb(230, 218, 206);
             this.Size = new Size(660, 434);
             label1.Location = new Point(220,110);
             LoginComboBox.Location = new Point(255, 155);
             LoginButton.Location = new Point(255, 195);
             UsersButton.Location = new Point(235, 245);
             // this.Icon = Properties.Resources.logo2;
-            Program.Icon = Icon!;
+           // Program.Icon = Icon!;
         }
 
         /// <summary>

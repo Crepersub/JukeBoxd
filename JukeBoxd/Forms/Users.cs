@@ -30,14 +30,15 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
-            this.BackgroundImage = Properties.Resources.user2;
-            this.BackColor = Color.FromArgb(230, 218, 206);
+        
+            this.BackColor = Color.FromArgb(230, 218, 206);           
+            UsernameTextBox.BackColor = Color.FromArgb(224, 224, 224);
             UsersListBox.BackColor = Color.FromArgb(224,224,224);
             UpdateButton.FlatAppearance.BorderSize = 0;
             DeleteButton.FlatAppearance.BorderSize = 0;
             AddUsersButton.FlatAppearance.BorderSize = 0;
-            Icon = Program.Icon!;
-
+            //Icon = Program.Icon!;
+ 
         }
 
         /// <summary>

@@ -92,6 +92,9 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
+            SongComboBox.BackColor = Color.FromArgb(224, 224, 224);
+            ReviewTextBox.BackColor = Color.FromArgb(224, 224, 224);
+            EntryDateTimePicker.BackColor = Color.FromArgb(224, 224, 224);
             AddButton.FlatAppearance.BorderColor = Color.FromArgb(255, 233, 205);
             AddButton.FlatAppearance.BorderSize = 0;
 
@@ -139,7 +142,7 @@ namespace JukeBoxd.Forms
                     }
                 };
             }
-            Icon = Program.Icon;
+           // Icon = Program.Icon;
         }
 
         /// <summary>

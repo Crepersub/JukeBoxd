@@ -64,9 +64,9 @@
             // 
             SongComboBox.Font = new Font("Microsoft PhagsPa", 12F);
             SongComboBox.FormattingEnabled = true;
-            SongComboBox.Location = new Point(53, 61);
+            SongComboBox.Location = new Point(44, 76);
             SongComboBox.Name = "SongComboBox";
-            SongComboBox.Size = new Size(615, 32);
+            SongComboBox.Size = new Size(380, 34);
             SongComboBox.TabIndex = 0;
             SongComboBox.TextUpdate += SongComboBox1_TextUpdate;
             // 
@@ -75,7 +75,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft PhagsPa", 12F);
-            label1.Location = new Point(43, 19);
+            label1.Location = new Point(34, 36);
             label1.Name = "label1";
             label1.Size = new Size(124, 26);
             label1.TabIndex = 1;
@@ -88,7 +88,7 @@
             AddButton.BackgroundImageLayout = ImageLayout.Stretch;
             AddButton.FlatStyle = FlatStyle.Flat;
             AddButton.Font = new Font("Microsoft PhagsPa", 12F);
-            AddButton.Location = new Point(272, 453);
+            AddButton.Location = new Point(173, 455);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(120, 39);
             AddButton.TabIndex = 2;
@@ -230,31 +230,29 @@
             ReviewLabel.AutoSize = true;
             ReviewLabel.BackColor = Color.Transparent;
             ReviewLabel.Font = new Font("Microsoft PhagsPa", 12F);
-            ReviewLabel.Location = new Point(50, 232);
+            ReviewLabel.Location = new Point(34, 233);
             ReviewLabel.Name = "ReviewLabel";
             ReviewLabel.Size = new Size(73, 26);
             ReviewLabel.TabIndex = 30;
             ReviewLabel.Text = "Review";
             // 
-        
+            // ReviewTextBox
             // 
             ReviewTextBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ReviewTextBox.Location = new Point(50, 271);
+            ReviewTextBox.Location = new Point(44, 262);
             ReviewTextBox.Multiline = true;
             ReviewTextBox.Name = "ReviewTextBox";
-            ReviewTextBox.Size = new Size(618, 112);
+            ReviewTextBox.Size = new Size(380, 112);
             ReviewTextBox.TabIndex = 31;
-            //          
             // 
             // EntryDateTimePicker
             // 
-            EntryDateTimePicker.Location = new Point(53, 403);
+            EntryDateTimePicker.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            EntryDateTimePicker.Location = new Point(44, 395);
             EntryDateTimePicker.Name = "EntryDateTimePicker";
-            EntryDateTimePicker.Size = new Size(615, 27);
+            EntryDateTimePicker.Size = new Size(380, 33);
             EntryDateTimePicker.TabIndex = 32;
             // 
-            
-
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
@@ -279,7 +277,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.add2;
-            ClientSize = new Size(743, 530);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(480, 530);
             Controls.Add(EntryDateTimePicker);
             Controls.Add(ReviewTextBox);
             Controls.Add(ReviewLabel);
@@ -287,6 +286,7 @@
             Controls.Add(AddButton);
             Controls.Add(label1);
             Controls.Add(SongComboBox);
+            DoubleBuffered = true;
             MaximizeBox = false;
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
