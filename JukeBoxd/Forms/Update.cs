@@ -155,7 +155,6 @@ namespace JukeBoxd.Forms
             selectedID = id;
             EntryDateLabel.BackColor = Color.FromArgb(255, 233, 205);
             UpdateButton.FlatAppearance.BorderSize = 0;
-            Icon = Program.Icon;
         }
 
         /// <summary>

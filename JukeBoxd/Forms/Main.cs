@@ -32,7 +32,6 @@ namespace JukeBoxd.Forms
             PreviewButton.FlatAppearance.BorderSize = 0;
             MainDataGridView.BackgroundColor = Color.FromArgb(255, 233, 205);
             ReviewLabel.BackColor = Color.FromArgb(255, 233, 205);
-            Icon = Program.Icon;
         }
 
         BindingSource source = new BindingSource();

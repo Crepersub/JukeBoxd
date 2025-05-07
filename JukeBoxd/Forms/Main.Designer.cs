@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             AddMainButton = new Button();
             MainDataGridView = new DataGridView();
             entryBindingSource = new BindingSource(components);
@@ -157,6 +158,7 @@
             Controls.Add(MainDataGridView);
             Controls.Add(AddMainButton);
             DoubleBuffered = true;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JukeBoxd";

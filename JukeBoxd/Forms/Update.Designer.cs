@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Update));
             UpdateButton = new Button();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
@@ -288,6 +289,7 @@
             Controls.Add(pictureBox8);
             Controls.Add(UpdateButton);
             DoubleBuffered = true;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Update";
             StartPosition = FormStartPosition.CenterScreen;

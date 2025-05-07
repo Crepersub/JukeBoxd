@@ -142,7 +142,6 @@ namespace JukeBoxd.Forms
                     }
                 };
             }
-            Icon = Program.Icon;
         }
 
         /// <summary>

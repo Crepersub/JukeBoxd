@@ -9,7 +9,7 @@ namespace JukeBoxd
     /// <summary>
     /// Represents the main program class for the JukeBoxd application.
     /// </summary>
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// The currently logged-in user. This is set after a successful login.
@@ -56,7 +56,7 @@ namespace JukeBoxd
         /// <summary>
         /// The login form instance, used as the initial form for user authentication.
         /// </summary>
-        static public Login login = new();
+        static public Login login = new(dbContext,CurrentUser);
 
         /// <summary>
         /// The main form instance, displayed after a successful login.

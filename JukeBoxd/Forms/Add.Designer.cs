@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add));
             SongComboBox = new ComboBox();
             label1 = new Label();
             AddButton = new Button();
@@ -288,6 +289,7 @@
             Controls.Add(SongComboBox);
             Controls.Add(panel1);
             DoubleBuffered = true;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
