@@ -18,10 +18,11 @@ namespace JukeBoxd.BusinessLayer
         /// Searches for tracks on Spotify based on a search query.
         /// </summary>
         /// <param name="text">The search query text.</param>
+        /// <param name="spotify">The Spotify client used to perform the search.</param>
         /// <returns>A list of tracks matching the search query.</returns>
-        public static List<FullTrackWithString> SpotifySearch(string text)
+        public static List<FullTrackWithString> SpotifySearch(string text, SpotifyClient spotify)
         {
-            var searchResult = Program.spotify.Search.Item(new SearchRequest(SearchRequest.Types.Track, text)).Result;
+            var searchResult = spotify.Search.Item(new SearchRequest(SearchRequest.Types.Track, text)).Result;
             if (searchResult.Tracks?.Items == null)
             {
                 return new List<FullTrackWithString>();
@@ -48,20 +49,22 @@ namespace JukeBoxd.BusinessLayer
         /// <param name="rating">The rating of the track.</param>
         /// <param name="date">The date the entry was created.</param>
         /// <param name="review">The review text for the entry.</param>
-        public static void AddEntry(FullTrack track, int userid, float rating, DateOnly date, string review)
+        /// <param name="dbContext">The database context to use for the operation.</param>
+        public static void AddEntry(FullTrack track, int userid, float rating, DateOnly date, string review, DiaryDbContext dbContext)
         {
-            Program.dbContext.Entries.Add(new Entry(track, userid, rating, date, review));
-            Program.dbContext.SaveChanges();
+            dbContext.Entries.Add(new Entry(track, userid, rating, date, review));
+            dbContext.SaveChanges();
         }
 
         /// <summary>
         /// Adds a new entry to the database.
         /// </summary>
         /// <param name="entry">The entry to add.</param>
-        public static void AddEntry(Entry entry)
+        /// <param name="dbContext">The database context to use for the operation.</param>
+        public static void AddEntry(Entry entry, DiaryDbContext dbContext)
         {
-            Program.dbContext.Entries.Add(entry);
-            Program.dbContext.SaveChanges();
+            dbContext.Entries.Add(entry);
+            dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -71,15 +74,16 @@ namespace JukeBoxd.BusinessLayer
         /// <param name="newrating">The new rating to assign to the entry.</param>
         /// <param name="date">The new date to assign to the entry.</param>
         /// <param name="review">The new review text to assign to the entry.</param>
-        public static void UpdateEntry(int entryid, float newrating, DateOnly date, string review)
+        /// <param name="dbContext">The database context to use for the operation.</param>
+        public static void UpdateEntry(int entryid, float newrating, DateOnly date, string review, DiaryDbContext dbContext)
         {
-            var entry = Program.dbContext.Entries.FirstOrDefault(x => x.Id == entryid);
+            var entry = dbContext.Entries.FirstOrDefault(x => x.Id == entryid);
             if (entry is not null)
             {
                 entry.Rating = newrating;
                 entry.EntryDate = date;
                 entry.Review = review;
-                Program.dbContext.SaveChanges();
+                dbContext.SaveChanges();
             }
         }
 
@@ -87,13 +91,14 @@ namespace JukeBoxd.BusinessLayer
         /// Removes an entry from the database.
         /// </summary>
         /// <param name="entryid">The ID of the entry to remove.</param>
-        public static void RemoveEntry(int entryid)
+        /// <param name="dbContext">The database context to use for the operation.</param>
+        public static void RemoveEntry(int entryid, DiaryDbContext dbContext)
         {
-            var entry = Program.dbContext.Entries.FirstOrDefault(x => x.Id == entryid);
+            var entry = dbContext.Entries.FirstOrDefault(x => x.Id == entryid);
             if (entry is not null)
             {
-                Program.dbContext.Entries.Remove(entry);
-                Program.dbContext.SaveChanges();
+                dbContext.Entries.Remove(entry);
+                dbContext.SaveChanges();
             }
         }
 
@@ -101,10 +106,11 @@ namespace JukeBoxd.BusinessLayer
         /// Retrieves the song ID associated with a specific entry.
         /// </summary>
         /// <param name="entryID">The ID of the entry to retrieve the song ID for.</param>
+        /// <param name="dbContext">The database context to use for the operation.</param>
         /// <returns>The song ID associated with the entry.</returns>
-        public static int GetSongId(int entryID)
+        public static int GetSongId(int entryID, DiaryDbContext dbContext)
         {
-            var title = Program.dbContext.Entries.SingleOrDefault(x => x.Id == entryID);
+            var title = dbContext.Entries.SingleOrDefault(x => x.Id == entryID);
             return title!.Id;
         }
     }

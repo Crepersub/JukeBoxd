@@ -39,11 +39,12 @@
             // UsersListBox
             // 
             UsersListBox.BackColor = Color.DarkSeaGreen;
+            UsersListBox.BorderStyle = BorderStyle.FixedSingle;
             UsersListBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             UsersListBox.FormattingEnabled = true;
-            UsersListBox.Location = new Point(453, 18);
+            UsersListBox.Location = new Point(441, 20);
             UsersListBox.Name = "UsersListBox";
-            UsersListBox.Size = new Size(287, 342);
+            UsersListBox.Size = new Size(266, 314);
             UsersListBox.TabIndex = 0;
             // 
             // UsernameLabel
@@ -51,7 +52,7 @@
             UsernameLabel.AutoSize = true;
             UsernameLabel.BackColor = Color.Transparent;
             UsernameLabel.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            UsernameLabel.Location = new Point(173, 35);
+            UsernameLabel.Location = new Point(34, 236);
             UsernameLabel.Name = "UsernameLabel";
             UsernameLabel.Size = new Size(103, 26);
             UsernameLabel.TabIndex = 1;
@@ -61,7 +62,7 @@
             // UsernameTextBox
             // 
             UsernameTextBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            UsernameTextBox.Location = new Point(173, 64);
+            UsernameTextBox.Location = new Point(34, 281);
             UsernameTextBox.Name = "UsernameTextBox";
             UsernameTextBox.Size = new Size(274, 33);
             UsernameTextBox.TabIndex = 2;
@@ -117,15 +118,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.background4;
+            BackgroundImage = Properties.Resources.user21;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(772, 557);
+            ClientSize = new Size(735, 384);
             Controls.Add(AddUsersButton);
             Controls.Add(DeleteButton);
             Controls.Add(UpdateButton);
             Controls.Add(UsernameTextBox);
             Controls.Add(UsernameLabel);
             Controls.Add(UsersListBox);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Users";

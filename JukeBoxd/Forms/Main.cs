@@ -46,7 +46,7 @@ namespace JukeBoxd.Forms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Main_Load(object sender, EventArgs e)
         {
-            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id));
+            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id, Program.dbContext));
             source = new BindingSource(entries, null!);
             MainDataGridView.AutoGenerateColumns = true;
             MainDataGridView.DataSource = source;
@@ -92,7 +92,7 @@ namespace JukeBoxd.Forms
             {
                 MessageBox.Show("Please select a row from the table.", "Update", MessageBoxButtons.OK);
             }
-            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id));
+            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id, Program.dbContext));
             source = new BindingSource(entries, null!);
             MainDataGridView.AutoGenerateColumns = true;
             MainDataGridView.DataSource = source;
@@ -142,7 +142,7 @@ namespace JukeBoxd.Forms
                 {
                     throw new InvalidOperationException("No row selected.");
                 }
-                EntryMid.RemoveEntry((int)MainDataGridView.CurrentRow.Cells[0].Value!);
+                EntryMid.RemoveEntry((int)MainDataGridView.CurrentRow.Cells[0].Value!, Program.dbContext);
                 UpdateDataGridView();
             }
             catch (InvalidOperationException)
@@ -159,7 +159,7 @@ namespace JukeBoxd.Forms
         /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void MainDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex > 0)
             {
                 var row = MainDataGridView.Rows[e.RowIndex];
                 if (row.Cells[7].Value != null && MainDataGridView.Rows.Count > 0)
@@ -203,6 +203,23 @@ namespace JukeBoxd.Forms
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void MainDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = MainDataGridView.Rows[e.RowIndex];
+                if (row.Cells[7].Value != null && MainDataGridView.Rows.Count > 0)
+                {
+                    if (row.Cells[8].Value!.ToString() != string.Empty)
+                    {
+                        ReviewLabel.Text = row.Cells[7].Value!.ToString();
+                        var track = Program.spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
+                        AlbumCoverPictureBox.Load(track);
+                    }
+                }
+            }
         }
     }
 }

@@ -99,12 +99,16 @@ namespace JukeBoxd.Forms
         public Update(string title, string author, DateOnly date, int id, string review)
         {
             InitializeComponent();
+
+            EditingTextBox.BackColor = Color.FromArgb(224, 224, 224);
             EditingTextBox.Text = $"{title} by {author}";
             ReviewTextBox.Text = review;
+            ReviewTextBox.BackColor = Color.FromArgb(224, 224, 224);
+            EntryDateTimePicker.BackColor = Color.FromArgb(224, 224, 224);
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
             this.BackColor = Color.FromArgb(230, 218, 206);
-            UpdateButton.FlatAppearance.BorderColor = Color.FromArgb(159, 160, 154);
-            UpdateButton.FlatAppearance.BorderSize = 3;
+            
+            UpdateButton.FlatAppearance.BorderSize = 0;
 
             foreach (var star in stars)
             {
@@ -323,9 +327,14 @@ namespace JukeBoxd.Forms
         /// <param name="e">The event data.</param>
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
+            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text, Program.dbContext);
             SongUpdated?.Invoke(this, EventArgs.Empty);
             this.Close();
+        }
+
+        private void Update_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

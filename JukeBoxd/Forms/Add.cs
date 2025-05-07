@@ -92,6 +92,9 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
+            SongComboBox.BackColor = Color.FromArgb(224, 224, 224);
+            ReviewTextBox.BackColor = Color.FromArgb(224, 224, 224);
+            EntryDateTimePicker.BackColor = Color.FromArgb(224, 224, 224);
             AddButton.FlatAppearance.BorderColor = Color.FromArgb(255, 233, 205);
             AddButton.FlatAppearance.BorderSize = 0;
 
@@ -115,21 +118,21 @@ namespace JukeBoxd.Forms
                     StartStarAnimation();
                 };
 
-                    stars[i].Click += (s, e) =>
-                {
-                    rating = (index + 1) / 2f;
-                    selectedCount = index + 1;
-                    SetRating(index+1);
-                    isRatingSet = true;
-                    HighlightStars(selectedCount);
-                    label3.Text = $"{rating}";
-                    StartGroupJump();
-                };
+                stars[i].Click += (s, e) =>
+            {
+                rating = (index + 1) / 2f;
+                selectedCount = index + 1;
+                SetRating(index + 1);
+                isRatingSet = true;
+                HighlightStars(selectedCount);
+                label3.Text = $"{rating}";
+                StartGroupJump();
+            };
                 stars[i].MouseLeave += (s, e) =>
                 {
                     if (!isRatingSet) ResetStars();
-                    else 
-                        HighlightStars((int)rating*2);
+                    else
+                        HighlightStars((int)rating * 2);
                     HighlightStars(selectedCount);
                     if (hoveredStar != null)
                     {
@@ -347,12 +350,14 @@ namespace JukeBoxd.Forms
                 {
                     PerformSearch();
                     SongComboBox.DroppedDown = true;
+                    System.Windows.Forms.Cursor.Current = Cursors.Default;
                 }));
             }
             else
             {
                 PerformSearch();
                 SongComboBox.DroppedDown = true;
+                System.Windows.Forms.Cursor.Current = Cursors.Default;
             }
         }
 
@@ -372,7 +377,7 @@ namespace JukeBoxd.Forms
                 var itemsToAdd = new List<FullTrackWithString>();
 
                 // Perform a Spotify search with the current text  
-                var searchResults = EntryMid.SpotifySearch(currentText);
+                var searchResults = EntryMid.SpotifySearch(currentText, Program.spotify);
                 if (searchResults != null)
                 {
                     foreach (var track in searchResults)
@@ -408,7 +413,7 @@ namespace JukeBoxd.Forms
                 Entry entrytosave = new(SongComboBox.SelectedItem as FullTrack, Program.CurrentUser!.Id, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
 
                 // Save the entry and update the main form
-                EntryMid.AddEntry(entrytosave);
+                EntryMid.AddEntry(entrytosave, Program.dbContext);
                 SongAdded?.Invoke(this, EventArgs.Empty);
                 this.Close();
             }
@@ -416,6 +421,11 @@ namespace JukeBoxd.Forms
             {
                 MessageBox.Show("Please enter a song!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void Add_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

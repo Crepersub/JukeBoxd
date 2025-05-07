@@ -92,6 +92,7 @@ namespace JukeBoxd.BusinessLayer
                 using var mf = new MediaFoundationReader(previewUrl);
                 using var wo = new WaveOutEvent();
                 wo.Init(mf);
+                wo.Volume = 0.1f;
                 wo.Play();
                 isPlaying = true;
                 while (wo.PlaybackState == PlaybackState.Playing)

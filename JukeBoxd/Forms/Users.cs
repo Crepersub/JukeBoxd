@@ -30,12 +30,15 @@ namespace JukeBoxd.Forms
         {
             InitializeComponent();
 
-            this.BackColor = Color.FromArgb(230, 218, 206);
-            UsersListBox.BackColor = Color.FromArgb(159, 160, 154);
+        
+            this.BackColor = Color.FromArgb(230, 218, 206);           
+            UsernameTextBox.BackColor = Color.FromArgb(224, 224, 224);
+            UsersListBox.BackColor = Color.FromArgb(224,224,224);
             UpdateButton.FlatAppearance.BorderSize = 0;
             DeleteButton.FlatAppearance.BorderSize = 0;
             AddUsersButton.FlatAppearance.BorderSize = 0;
-            Icon = Program.Icon!;
+            //Icon = Program.Icon!;
+ 
         }
 
         /// <summary>
@@ -56,15 +59,15 @@ namespace JukeBoxd.Forms
         /// </summary>
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && UsersListBox.SelectedItem is not null)
+            if (e.KeyCode == Keys.Enter)
             {
                 if (currentmode == "add")
                 {
-                    UserMid.AddUser(UsernameTextBox.Text);
+                    UserMid.AddUser(UsernameTextBox.Text, Program.dbContext);
                 }
-                else if (currentmode == "modify")
+                else if (currentmode == "modify" && UsersListBox.SelectedItem is not null)
                 {
-                    UserMid.ChangeUsername(UsersListBox.SelectedItem.ToString()!, UsernameTextBox.Text);
+                    UserMid.ChangeUsername(UsersListBox.SelectedItem.ToString()!, UsernameTextBox.Text,Program.dbContext);
                 }
                 Reload();
             }
@@ -104,7 +107,7 @@ namespace JukeBoxd.Forms
         {
             if (UsersListBox.SelectedItem is not null)
             {
-                UserMid.RemoveUser(UsersListBox.SelectedItem.ToString()!);
+                UserMid.RemoveUser(UsersListBox.SelectedItem.ToString()!, Program.dbContext);
                 Reload();
             }
         }

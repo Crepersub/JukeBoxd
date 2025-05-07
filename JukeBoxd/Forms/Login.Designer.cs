@@ -95,7 +95,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.background1;
+            BackgroundImage = Properties.Resources.login2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(747, 478);
             Controls.Add(UsersButton);
@@ -103,7 +103,7 @@
             Controls.Add(LoginComboBox);
             Controls.Add(label1);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Login";
