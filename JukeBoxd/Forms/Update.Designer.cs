@@ -77,7 +77,7 @@
             // 
             pictureBox5.BackColor = Color.Transparent;
             pictureBox5.Image = Properties.Resources.newEStar2;
-            pictureBox5.Location = new Point(259, 133);
+            pictureBox5.Location = new Point(187, 146);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(33, 62);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -88,7 +88,7 @@
             // 
             pictureBox6.BackColor = Color.Transparent;
             pictureBox6.Image = Properties.Resources.newEStar1;
-            pictureBox6.Location = new Point(291, 133);
+            pictureBox6.Location = new Point(219, 146);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(33, 62);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -99,7 +99,7 @@
             // 
             pictureBox7.BackColor = Color.Transparent;
             pictureBox7.Image = Properties.Resources.newEStar2;
-            pictureBox7.Location = new Point(330, 133);
+            pictureBox7.Location = new Point(258, 146);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(33, 62);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -110,7 +110,7 @@
             // 
             pictureBox8.BackColor = Color.Transparent;
             pictureBox8.Image = Properties.Resources.newEStar1;
-            pictureBox8.Location = new Point(362, 133);
+            pictureBox8.Location = new Point(290, 146);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(33, 62);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -121,7 +121,7 @@
             // 
             pictureBox9.BackColor = Color.Transparent;
             pictureBox9.Image = Properties.Resources.newEStar2;
-            pictureBox9.Location = new Point(401, 133);
+            pictureBox9.Location = new Point(329, 146);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(33, 62);
             pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -132,7 +132,7 @@
             // 
             pictureBox10.BackColor = Color.Transparent;
             pictureBox10.Image = Properties.Resources.newEStar1;
-            pictureBox10.Location = new Point(433, 133);
+            pictureBox10.Location = new Point(361, 146);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(33, 62);
             pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -143,7 +143,7 @@
             // 
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.Image = Properties.Resources.newEStar2;
-            pictureBox3.Location = new Point(188, 133);
+            pictureBox3.Location = new Point(116, 146);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(33, 62);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -154,7 +154,7 @@
             // 
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.Image = Properties.Resources.newEStar1;
-            pictureBox4.Location = new Point(220, 133);
+            pictureBox4.Location = new Point(148, 146);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(33, 62);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -165,7 +165,7 @@
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.newEStar2;
-            pictureBox1.Location = new Point(117, 133);
+            pictureBox1.Location = new Point(45, 146);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(33, 62);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -176,7 +176,7 @@
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources.newEStar1;
-            pictureBox2.Location = new Point(149, 133);
+            pictureBox2.Location = new Point(77, 146);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(33, 62);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -186,7 +186,8 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(146, 94);
+            label3.BackColor = Color.Transparent;
+            label3.Location = new Point(117, 117);
             label3.Name = "label3";
             label3.Size = new Size(0, 20);
             label3.TabIndex = 19;
@@ -201,11 +202,11 @@
             // 
             // EditingTextBox
             // 
-            EditingTextBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            EditingTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             EditingTextBox.Location = new Point(43, 58);
             EditingTextBox.Name = "EditingTextBox";
             EditingTextBox.ReadOnly = true;
-            EditingTextBox.Size = new Size(447, 33);
+            EditingTextBox.Size = new Size(447, 34);
             EditingTextBox.TabIndex = 21;
             // 
             // ReviewTextBox
@@ -233,7 +234,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Microsoft PhagsPa", 12F);
-            label2.Location = new Point(42, 110);
+            label2.Location = new Point(38, 111);
             label2.Name = "label2";
             label2.Size = new Size(73, 26);
             label2.TabIndex = 25;
