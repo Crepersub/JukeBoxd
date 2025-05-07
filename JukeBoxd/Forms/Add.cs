@@ -142,7 +142,7 @@ namespace JukeBoxd.Forms
                     }
                 };
             }
-           // Icon = Program.Icon;
+           Icon = Program.Icon;
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace JukeBoxd.Forms
                 var itemsToAdd = new List<FullTrackWithString>();
 
                 // Perform a Spotify search with the current text  
-                var searchResults = EntryMid.SpotifySearch(currentText);
+                var searchResults = EntryMid.SpotifySearch(currentText, Program.spotify);
                 if (searchResults != null)
                 {
                     foreach (var track in searchResults)
@@ -413,7 +413,7 @@ namespace JukeBoxd.Forms
                 Entry entrytosave = new(SongComboBox.SelectedItem as FullTrack, Program.CurrentUser!.Id, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
 
                 // Save the entry and update the main form
-                EntryMid.AddEntry(entrytosave);
+                EntryMid.AddEntry(entrytosave, Program.dbContext);
                 SongAdded?.Invoke(this, EventArgs.Empty);
                 this.Close();
             }

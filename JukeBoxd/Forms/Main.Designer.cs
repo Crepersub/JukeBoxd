@@ -73,6 +73,7 @@
             MainDataGridView.RowHeadersWidth = 51;
             MainDataGridView.Size = new Size(631, 281);
             MainDataGridView.TabIndex = 10;
+            MainDataGridView.CellClick += MainDataGridView_CellClick_1;
             // 
             // UpdateMainButton
             // 

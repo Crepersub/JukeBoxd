@@ -23,7 +23,7 @@ namespace JukeBoxd.Forms
             LoginButton.Location = new Point(255, 195);
             UsersButton.Location = new Point(235, 245);
             // this.Icon = Properties.Resources.logo2;
-           // Program.Icon = Icon!;
+            Program.Icon = Icon!;
         }
 
         /// <summary>

@@ -327,7 +327,7 @@ namespace JukeBoxd.Forms
         /// <param name="e">The event data.</param>
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
+            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text, Program.dbContext);
             SongUpdated?.Invoke(this, EventArgs.Empty);
             this.Close();
         }
