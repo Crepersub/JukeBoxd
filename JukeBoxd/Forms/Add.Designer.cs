@@ -286,11 +286,13 @@
             Controls.Add(AddButton);
             Controls.Add(label1);
             Controls.Add(SongComboBox);
+            Controls.Add(panel1);
             DoubleBuffered = true;
             MaximizeBox = false;
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JukeBoxd";
+            Load += Add_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

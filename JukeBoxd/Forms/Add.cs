@@ -118,21 +118,21 @@ namespace JukeBoxd.Forms
                     StartStarAnimation();
                 };
 
-                    stars[i].Click += (s, e) =>
-                {
-                    rating = (index + 1) / 2f;
-                    selectedCount = index + 1;
-                    SetRating(index+1);
-                    isRatingSet = true;
-                    HighlightStars(selectedCount);
-                    label3.Text = $"{rating}";
-                    StartGroupJump();
-                };
+                stars[i].Click += (s, e) =>
+            {
+                rating = (index + 1) / 2f;
+                selectedCount = index + 1;
+                SetRating(index + 1);
+                isRatingSet = true;
+                HighlightStars(selectedCount);
+                label3.Text = $"{rating}";
+                StartGroupJump();
+            };
                 stars[i].MouseLeave += (s, e) =>
                 {
                     if (!isRatingSet) ResetStars();
-                    else 
-                        HighlightStars((int)rating*2);
+                    else
+                        HighlightStars((int)rating * 2);
                     HighlightStars(selectedCount);
                     if (hoveredStar != null)
                     {
@@ -142,7 +142,7 @@ namespace JukeBoxd.Forms
                     }
                 };
             }
-           Icon = Program.Icon;
+            Icon = Program.Icon;
         }
 
         /// <summary>
@@ -421,6 +421,11 @@ namespace JukeBoxd.Forms
             {
                 MessageBox.Show("Please enter a song!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void Add_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
