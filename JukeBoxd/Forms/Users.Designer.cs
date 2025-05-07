@@ -40,11 +40,11 @@
             // 
             UsersListBox.BackColor = Color.DarkSeaGreen;
             UsersListBox.BorderStyle = BorderStyle.FixedSingle;
-            UsersListBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UsersListBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             UsersListBox.FormattingEnabled = true;
             UsersListBox.Location = new Point(441, 20);
             UsersListBox.Name = "UsersListBox";
-            UsersListBox.Size = new Size(266, 314);
+            UsersListBox.Size = new Size(266, 310);
             UsersListBox.TabIndex = 0;
             // 
             // UsernameLabel
@@ -133,7 +133,7 @@
             Name = "Users";
             Padding = new Padding(2);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Users";
+            Text = "JukeBoxd";
             FormClosed += Users_FormClosed;
             Load += Users_Load;
             ResumeLayout(false);

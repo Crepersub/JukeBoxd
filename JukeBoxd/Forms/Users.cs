@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JukeBoxd.Models;
+using Windows.System.RemoteSystems;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JukeBoxd.Forms
@@ -37,8 +38,8 @@ namespace JukeBoxd.Forms
             UpdateButton.FlatAppearance.BorderSize = 0;
             DeleteButton.FlatAppearance.BorderSize = 0;
             AddUsersButton.FlatAppearance.BorderSize = 0;
-            //Icon = Program.Icon!;
- 
+            Icon = Program.Icon!;
+
         }
 
         /// <summary>
@@ -47,12 +48,17 @@ namespace JukeBoxd.Forms
         /// </summary>
         private void AddUserButton_Click(object sender, EventArgs e)
         {
+            if (UsernameTextBox.Text != string.Empty)
+            {
+                UserMid.AddUser(UsernameTextBox.Text, Program.dbContext);
+                Reload();
+            }
             UsernameLabel.Show();
             UsernameTextBox.Clear();
             UsernameTextBox.Show();
             currentmode = "add";
+            UsernameLabel.Text = "Add new user";
         }
-
         /// <summary>
         /// Handles the KeyDown event for the username text box.
         /// Adds or modifies a user when the Enter key is pressed.
@@ -63,13 +69,20 @@ namespace JukeBoxd.Forms
             {
                 if (currentmode == "add")
                 {
-                    UserMid.AddUser(UsernameTextBox.Text, Program.dbContext);
+                    if (UsernameTextBox.Text != string.Empty)
+                    {
+                        UserMid.AddUser(UsernameTextBox.Text, Program.dbContext);
+                    }
                 }
                 else if (currentmode == "modify" && UsersListBox.SelectedItem is not null)
                 {
-                    UserMid.ChangeUsername(UsersListBox.SelectedItem.ToString()!, UsernameTextBox.Text,Program.dbContext);
+                    if (UsernameTextBox.Text != string.Empty)
+                    {
+                        UserMid.ChangeUsername(UsersListBox.SelectedItem.ToString()!, UsernameTextBox.Text, Program.dbContext);
+                    }
                 }
                 Reload();
+                currentmode = "";
             }
         }
 
@@ -93,10 +106,46 @@ namespace JukeBoxd.Forms
         /// </summary>
         private void UpdateUserButton_Click(object sender, EventArgs e)
         {
-            UsernameLabel.Show();
-            UsernameTextBox.Clear();
-            UsernameTextBox.Show();
-            currentmode = "modify";
+            try
+            {
+                if (currentmode != "modify")
+                {
+                    if (UsersListBox.SelectedItem is not null)
+                    {
+                        UsernameTextBox.Text = UsersListBox.SelectedItem.ToString()!;
+                        UsernameLabel.Text = "Edit username";
+                        UsernameLabel.Show();
+                        UsernameTextBox.Show();
+                        currentmode = "modify";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a user to modify", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else 
+                {
+                    string selectedUsername = UsersListBox.SelectedItem?.ToString() ?? "";
+                    string newUsername = UsernameTextBox.Text.Trim();
+
+                    if (string.IsNullOrEmpty(newUsername))
+                    {
+                        MessageBox.Show("Please enter a new username", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    UserMid.ChangeUsername(selectedUsername, newUsername, Program.dbContext);
+                    Reload();
+                    currentmode = "";
+                    UsernameTextBox.Clear();
+                    UsernameTextBox.Hide();
+                    UsernameLabel.Hide();
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         /// <summary>
@@ -105,11 +154,33 @@ namespace JukeBoxd.Forms
         /// </summary>
         private void button2_Click(object sender, EventArgs e)
         {
-            if (UsersListBox.SelectedItem is not null)
+
+            try
             {
-                UserMid.RemoveUser(UsersListBox.SelectedItem.ToString()!, Program.dbContext);
-                Reload();
+                if (UsersListBox.SelectedItem is not null)
+                {
+                    DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete '{UsersListBox.SelectedItem}'?",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+                    if (result==DialogResult.Yes)
+                    {
+                        UserMid.RemoveUser(UsersListBox.SelectedItem.ToString()!, Program.dbContext);
+                        Reload();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a user to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         /// <summary>
