@@ -1,4 +1,11 @@
-# JukeBoxd      ![JukeBoxd Logo](https://raw.githubusercontent.com/Crepersub/JukeBoxd/refs/heads/dev/JukeBoxd/Resources/logo2.ico)
+<table>
+  <tr>
+    <td><h1>JukeBoxd™</h1></td>
+    <td align="right">
+      <img src="https://raw.githubusercontent.com/Crepersub/JukeBoxd/refs/heads/dev/JukeBoxd/Resources/logo2.ico" alt="JukeBoxd Logo" width="60"/>
+    </td>
+  </tr>
+</table>
 
 ## Създадено от
 **Александър Пеев**  
