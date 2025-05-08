@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/Crepersub/JukeBoxd/refs/heads/dev/JukeBoxd/Resources/logo2.ico" alt="JukeBoxd Logo" width="120"/>
 </p>
+
 # JukeBoxd
 
 ## Създадено от
