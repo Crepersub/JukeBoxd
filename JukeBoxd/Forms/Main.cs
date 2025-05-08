@@ -147,7 +147,7 @@ namespace JukeBoxd.Forms
                 if (MainDataGridView.CurrentRow is not null)
                 {
                     DialogResult result = MessageBox.Show(
-                $"Are you sure you want to delete '{MainDataGridView.CurrentRow.Cells[0]}'?",
+                $"Are you sure you want to delete '{MainDataGridView.CurrentRow.Cells[0].ToString()}'?",
                 "Confirm Deletion",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
