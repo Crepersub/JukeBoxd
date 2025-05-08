@@ -3,6 +3,7 @@ using JukeBoxd.Forms;
 using JukeBoxd.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SpotifyAPI.Web;
 using System.Linq;
 using System.Windows.Forms;
 using Tests.TestBusinessLayer;
@@ -15,7 +16,8 @@ namespace Tests
     {
         private TestDBContext _inMemoryDbContext;
         private Login _loginForm;
-        private User _currentUser; // Replacing Program.CurrentUser
+        private User _currentUser;
+        private SpotifyClient spotify;// Replacing Program.CurrentUser
 
         [TestInitialize]
         public void Setup()
@@ -33,7 +35,7 @@ namespace Tests
             _inMemoryDbContext.SaveChanges();
 
             // Initialize the Login form
-            _loginForm = new Login(_inMemoryDbContext,_currentUser);
+            _loginForm = new Login(_inMemoryDbContext,_currentUser,spotify);
         }
 
         [TestCleanup]

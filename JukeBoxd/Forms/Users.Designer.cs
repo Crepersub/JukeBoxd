@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Users));
             UsersListBox = new ListBox();
             UsernameLabel = new Label();
             UsernameTextBox = new TextBox();
@@ -129,6 +130,7 @@
             Controls.Add(UsersListBox);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Users";
             Padding = new Padding(2);

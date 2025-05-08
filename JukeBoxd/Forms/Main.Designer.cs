@@ -171,13 +171,13 @@
         }
 
         #endregion
-        private Button AddMainButton;
-        private DataGridView MainDataGridView;
         private BindingSource entryBindingSource;
-        private Button UpdateMainButton;
-        private Button DeleteMainButton;
         private PictureBox AlbumCoverPictureBox;
-        private Button PreviewButton;
         private Label ReviewLabel;
+        public DataGridView MainDataGridView;
+        public Button AddMainButton;
+        public Button UpdateMainButton;
+        public Button DeleteMainButton;
+        public Button PreviewButton;
     }
 }

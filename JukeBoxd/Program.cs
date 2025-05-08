@@ -17,11 +17,6 @@ namespace JukeBoxd
         static public User? CurrentUser;
 
         /// <summary>
-        /// The application icon used throughout the application.
-        /// </summary>
-        static public Icon? Icon;
-
-        /// <summary>
         /// The database context for managing users and their diary entries.
         /// </summary>
         static public DiaryDbContext dbContext = new();
@@ -56,12 +51,12 @@ namespace JukeBoxd
         /// <summary>
         /// The login form instance, used as the initial form for user authentication.
         /// </summary>
-        static public Login login = new(dbContext,CurrentUser);
+        static public Login login = new(dbContext,CurrentUser,spotify);
 
         /// <summary>
         /// The main form instance, displayed after a successful login.
         /// </summary>
-        static public Main main = new();
+        static public Main main = new(dbContext,CurrentUser,spotify);
 
         /// <summary>
         /// The main entry point for the application.

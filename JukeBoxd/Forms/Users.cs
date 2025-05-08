@@ -38,7 +38,6 @@ namespace JukeBoxd.Forms
             UpdateButton.FlatAppearance.BorderSize = 0;
             DeleteButton.FlatAppearance.BorderSize = 0;
             AddUsersButton.FlatAppearance.BorderSize = 0;
-            Icon = Program.Icon!;
 
         }
 

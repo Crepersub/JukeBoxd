@@ -1,5 +1,6 @@
 using JukeBoxd;
 using JukeBoxd.Models;
+using SpotifyAPI.Web;
 
 namespace JukeBoxd.Forms
 {
@@ -7,13 +8,14 @@ namespace JukeBoxd.Forms
     {
         private DiaryDbContext dbContext;
         private User CurrentUser;
+        private SpotifyClient spotify;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Login"/> class.
         /// Sets up the UI elements and their properties.
         /// </summary>
         /// <param name="context">The DiaryDbContext to be used by this form.</param>
-        public Login(DiaryDbContext context, User currentUser)
+        public Login(DiaryDbContext context, User currentUser,SpotifyClient spotify)
         {
             InitializeComponent();
 
@@ -28,6 +30,7 @@ namespace JukeBoxd.Forms
             LoginButton.Location = new Point(255, 195);
             UsersButton.Location = new Point(235, 245);
             this.CurrentUser = currentUser;
+            this.spotify = spotify;
             // this.Icon = Properties.Resources.logo2;
             // Program.Icon = Icon!;
         }
@@ -45,7 +48,7 @@ namespace JukeBoxd.Forms
                 CurrentUser = dbContext.Users
                     .Where(x => x.Username == LoginComboBox.SelectedItem.ToString())
                     .FirstOrDefault()!;
-                new Main().Show();
+                new Main(dbContext,CurrentUser,spotify).Show();
                 Hide();
             }
             else

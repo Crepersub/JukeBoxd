@@ -302,8 +302,6 @@
         }
 
         #endregion
-
-        private ComboBox SongComboBox;
         private Label label1;
         private Button AddButton;
         private Label label2;
@@ -319,7 +317,8 @@
         private PictureBox pictureBox8;
         private Label label3;
         private Label ReviewLabel;
-        private TextBox ReviewTextBox;
-        private DateTimePicker EntryDateTimePicker;
+        public ComboBox SongComboBox;
+        public DateTimePicker EntryDateTimePicker;
+        public TextBox ReviewTextBox;
     }
 }
