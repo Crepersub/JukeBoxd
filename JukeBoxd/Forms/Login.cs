@@ -1,29 +1,38 @@
 using JukeBoxd;
 using JukeBoxd.Models;
+using SpotifyAPI.Web;
 
 namespace JukeBoxd.Forms
 {
     public partial class Login : Form
     {
+        private DiaryDbContext dbContext;
+        private User CurrentUser;
+        private SpotifyClient spotify;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Login"/> class.
         /// Sets up the UI elements and their properties.
         /// </summary>
-        public Login()
+        /// <param name="context">The DiaryDbContext to be used by this form.</param>
+        public Login(DiaryDbContext context, User currentUser,SpotifyClient spotify)
         {
             InitializeComponent();
 
-           
-            LoginButton.FlatAppearance.BorderSize = 0;           
+            dbContext = context;
+
+            LoginButton.FlatAppearance.BorderSize = 0;
             UsersButton.FlatAppearance.BorderSize = 0;
             LoginComboBox.BackColor = Color.FromArgb(230, 218, 206);
             this.Size = new Size(660, 434);
-            label1.Location = new Point(220,110);
+            label1.Location = new Point(220, 110);
             LoginComboBox.Location = new Point(255, 155);
             LoginButton.Location = new Point(255, 195);
             UsersButton.Location = new Point(235, 245);
+            this.CurrentUser = currentUser;
+            this.spotify = spotify;
             // this.Icon = Properties.Resources.logo2;
-            Program.Icon = Icon!;
+            // Program.Icon = Icon!;
         }
 
         /// <summary>
@@ -32,15 +41,20 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
-        private void LoginButton_Click(object sender, EventArgs e)
+        public void LoginButton_Click(object sender, EventArgs e)
         {
             if (LoginComboBox.SelectedItem is not null)
             {
-                Program.CurrentUser = Program.dbContext.Users.Where(x => x.Username == LoginComboBox.SelectedItem.ToString()).FirstOrDefault()!;
-                new Main().Show();
+                CurrentUser = dbContext.Users
+                    .Where(x => x.Username == LoginComboBox.SelectedItem.ToString())
+                    .FirstOrDefault()!;
+                new Main(dbContext,CurrentUser,spotify).Show();
                 Hide();
             }
-            else MessageBox.Show("Select a user!", "No user selected");
+            else
+            {
+                MessageBox.Show("Select a user!", "No user selected");
+            }
         }
 
         /// <summary>
@@ -49,9 +63,9 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
-        private void Login_Load(object sender, EventArgs e)
+        public void Login_Load(object sender, EventArgs e)
         {
-            foreach (User user in Program.dbContext.Users)
+            foreach (User user in dbContext.Users)
             {
                 LoginComboBox.Items.Add(user.Username);
             }
@@ -64,7 +78,7 @@ namespace JukeBoxd.Forms
         public void Reload()
         {
             LoginComboBox.Items.Clear();
-            foreach (User user in Program.dbContext.Users)
+            foreach (User user in dbContext.Users)
             {
                 LoginComboBox.Items.Add(user.Username);
             }
@@ -76,7 +90,7 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
-        private void UsersButton_Click(object sender, EventArgs e)
+        public void UsersButton_Click(object sender, EventArgs e)
         {
             new Users().Show();
         }

@@ -15,15 +15,18 @@ namespace JukeBoxd.Forms
 {
     public partial class Add : Form
     {
+        private User CurrentUser;
+        private SpotifyClient spotify;
+        private DiaryDbContext dbContext;
         /// <summary>
         /// Array of PictureBox controls representing the stars for rating.
         /// </summary>
-        private PictureBox[] stars;
+        public PictureBox[] stars;
 
         /// <summary>
         /// The current rating value, calculated based on the selected stars.
         /// </summary>
-        private float rating = 0;
+        public float rating = 0;
 
         /// <summary>
         /// Indicates whether the rating has been set by the user.
@@ -88,7 +91,7 @@ namespace JukeBoxd.Forms
         /// <summary>
         /// Initializes a new instance of the <see cref="Add"/> form.
         /// </summary>
-        public Add()
+        public Add(User currentUser, SpotifyClient spotify, DiaryDbContext dbContext)
         {
             InitializeComponent();
 
@@ -142,7 +145,10 @@ namespace JukeBoxd.Forms
                     }
                 };
             }
-            Icon = Program.Icon;
+
+            CurrentUser = currentUser;
+            this.spotify = spotify;
+            this.dbContext = dbContext;
         }
 
         /// <summary>
@@ -290,7 +296,7 @@ namespace JukeBoxd.Forms
         /// Updates the star images to represent filled or empty states.
         /// </summary>
         /// <param name="count">The number of stars to highlight.</param>
-        private void HighlightStars(int count)
+        public void HighlightStars(int count)
         {
             for (int i = 0; i < stars.Length; i++)
             {
@@ -365,7 +371,7 @@ namespace JukeBoxd.Forms
         /// Performs a search on Spotify using the current text in the SongComboBox.
         /// Updates the ComboBox items with the search results.
         /// </summary>
-        private void PerformSearch()
+        public void PerformSearch()
         {
             if (SongComboBox.Text != string.Empty)
             {
@@ -377,7 +383,7 @@ namespace JukeBoxd.Forms
                 var itemsToAdd = new List<FullTrackWithString>();
 
                 // Perform a Spotify search with the current text  
-                var searchResults = EntryMid.SpotifySearch(currentText, Program.spotify);
+                var searchResults = EntryMid.SpotifySearch(currentText, spotify);
                 if (searchResults != null)
                 {
                     foreach (var track in searchResults)
@@ -405,15 +411,15 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
-        private void AddButton1_Click(object sender, EventArgs e)
+        public void AddButton1_Click(object sender, EventArgs e)
         {
             if (SongComboBox.SelectedItem is not null)
             {
                 // Create a new entry with the selected track, user ID, and rating
-                Entry entrytosave = new(SongComboBox.SelectedItem as FullTrack, Program.CurrentUser!.Id, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
+                Entry entrytosave = new(SongComboBox.SelectedItem as FullTrack, CurrentUser!.Id, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text);
 
                 // Save the entry and update the main form
-                EntryMid.AddEntry(entrytosave, Program.dbContext);
+                EntryMid.AddEntry(entrytosave, dbContext);
                 SongAdded?.Invoke(this, EventArgs.Empty);
                 this.Close();
             }

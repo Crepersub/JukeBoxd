@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add));
             SongComboBox = new ComboBox();
             label1 = new Label();
             AddButton = new Button();
@@ -280,6 +281,7 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox4);
             DoubleBuffered = true;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
@@ -300,8 +302,6 @@
         }
 
         #endregion
-
-        private ComboBox SongComboBox;
         private Label label1;
         private Button AddButton;
         private Label label2;
@@ -317,7 +317,8 @@
         private PictureBox pictureBox8;
         private Label label3;
         private Label ReviewLabel;
-        private TextBox ReviewTextBox;
-        private DateTimePicker EntryDateTimePicker;
+        public ComboBox SongComboBox;
+        public DateTimePicker EntryDateTimePicker;
+        public TextBox ReviewTextBox;
     }
 }

@@ -117,8 +117,8 @@
         #endregion
 
         private Label label1;
-        private ComboBox LoginComboBox;
         private Button LoginButton;
         private Button UsersButton;
+        public ComboBox LoginComboBox;
     }
 }

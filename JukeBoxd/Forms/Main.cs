@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JukeBoxd.BusinessLayer;
 using JukeBoxd.Models;
+using SpotifyAPI.Web;
 
 namespace JukeBoxd.Forms
 {
@@ -18,11 +19,14 @@ namespace JukeBoxd.Forms
     /// </summary>
     public partial class Main : Form
     {
+        private DiaryDbContext dbContext;
+        private User CurrentUser;
+        private SpotifyClient spotify;
         /// <summary>
         /// Initializes a new instance of the <see cref="Main"/> class.
         /// Sets up the UI components and their initial properties.
         /// </summary>
-        public Main()
+        public Main(DiaryDbContext dbContext, User currentUser,SpotifyClient spotify)
         {
             InitializeComponent();
 
@@ -32,7 +36,9 @@ namespace JukeBoxd.Forms
             PreviewButton.FlatAppearance.BorderSize = 0;
             MainDataGridView.BackgroundColor = Color.FromArgb(255, 233, 205);
             ReviewLabel.BackColor = Color.FromArgb(255, 233, 205);
-            Icon = Program.Icon;
+            this.dbContext = dbContext;
+            this.CurrentUser = currentUser;
+            this.spotify = spotify;
         }
 
         BindingSource source = new BindingSource();
@@ -44,9 +50,9 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void Main_Load(object sender, EventArgs e)
+        public void Main_Load(object sender, EventArgs e)
         {
-            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id, Program.dbContext));
+            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(CurrentUser!.Id, dbContext));
             source = new BindingSource(entries, null!);
             MainDataGridView.AutoGenerateColumns = true;
             MainDataGridView.DataSource = source;
@@ -61,7 +67,7 @@ namespace JukeBoxd.Forms
                 var firstRow = MainDataGridView.Rows[0];
                 if (firstRow.Cells[8].Value != null && !string.IsNullOrEmpty(firstRow.Cells[8].Value!.ToString()))
                 {
-                    var track = Program.spotify.Tracks.Get(firstRow.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
+                    var track = spotify.Tracks.Get(firstRow.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
                     ReviewLabel.Text = firstRow.Cells[7].Value!.ToString();
                     AlbumCoverPictureBox.Load(track);
                 }
@@ -77,7 +83,7 @@ namespace JukeBoxd.Forms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Add addForm = new();
+            Add addForm = new(CurrentUser,spotify,dbContext);
             addForm.SongAdded += (s, args) => UpdateDataGridView();
             addForm.ShowDialog();
         }
@@ -92,7 +98,7 @@ namespace JukeBoxd.Forms
             {
                 MessageBox.Show("Please select a row from the table.", "Update", MessageBoxButtons.OK);
             }
-            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(Program.CurrentUser!.Id, Program.dbContext));
+            var entries = new BindingList<Entry>(UserMid.GetUsersEntries(CurrentUser!.Id, dbContext));
             source = new BindingSource(entries, null!);
             MainDataGridView.AutoGenerateColumns = true;
             MainDataGridView.DataSource = source;
@@ -180,7 +186,7 @@ namespace JukeBoxd.Forms
                     if (row.Cells[8].Value!.ToString() != string.Empty)
                     {
                         ReviewLabel.Text = row.Cells[7].Value!.ToString();
-                        var track = Program.spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
+                        var track = spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
                         AlbumCoverPictureBox.Load(track);
                     }
                 }
@@ -198,7 +204,7 @@ namespace JukeBoxd.Forms
             var row = MainDataGridView.CurrentRow!;
             if (row.Cells[8].Value != null)
             {
-                var selectedTrack = Program.spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result;
+                var selectedTrack = spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result;
                 var deezerTrack = DeezerClient.SearchTrackISRC(selectedTrack);
                 if (deezerTrack is not null)
                 {
@@ -228,7 +234,7 @@ namespace JukeBoxd.Forms
                     if (row.Cells[8].Value!.ToString() != string.Empty)
                     {
                         ReviewLabel.Text = row.Cells[7].Value!.ToString();
-                        var track = Program.spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
+                        var track = spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
                         AlbumCoverPictureBox.Load(track);
                     }
                 }
