@@ -1,4 +1,4 @@
-# JukeBoxd      ![JukeBoxd Logo](F:\logo.png)
+# JukeBoxd      ![JukeBoxd Logo](https://raw.githubusercontent.com/Crepersub/JukeBoxd/refs/heads/dev/JukeBoxd/Resources/logo2.ico)
 
 ## Създадено от
 **Александър Пеев**  
