@@ -140,12 +140,25 @@ namespace JukeBoxd.Forms
         {
             try
             {
+                if (MainDataGridView.CurrentRow is not null)
+                {
+                    DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete '{MainDataGridView.CurrentRow.Cells[0].ToString()}'?",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+                    if (result == DialogResult.Yes)
+                    {
+                        EntryMid.RemoveEntry((int)MainDataGridView.CurrentRow.Cells[0].Value!, Program.dbContext);
+                UpdateDataGridView();
+                    }
+                }
                 if (MainDataGridView.CurrentRow == null)
                 {
                     throw new InvalidOperationException("No row selected.");
                 }
-                EntryMid.RemoveEntry((int)MainDataGridView.CurrentRow.Cells[0].Value!, dbContext);
-                UpdateDataGridView();
+                
             }
             catch (InvalidOperationException)
             {

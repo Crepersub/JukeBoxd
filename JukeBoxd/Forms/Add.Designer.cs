@@ -63,7 +63,7 @@
             // 
             SongComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             SongComboBox.FormattingEnabled = true;
-            SongComboBox.Location = new Point(44, 76);
+            SongComboBox.Location = new Point(47, 66);
             SongComboBox.Name = "SongComboBox";
             SongComboBox.Size = new Size(380, 36);
             SongComboBox.TabIndex = 0;
@@ -74,7 +74,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft PhagsPa", 12F);
-            label1.Location = new Point(34, 36);
+            label1.Location = new Point(44, 37);
             label1.Name = "label1";
             label1.Size = new Size(124, 26);
             label1.TabIndex = 1;
@@ -102,9 +102,9 @@
             label2.Font = new Font("Microsoft PhagsPa", 12F);
             label2.Location = new Point(44, 119);
             label2.Name = "label2";
-            label2.Size = new Size(69, 26);
+            label2.Size = new Size(73, 26);
             label2.TabIndex = 3;
-            label2.Text = "Rating";
+            label2.Text = "Rating:";
             // 
             // pictureBox1
             // 
@@ -222,7 +222,7 @@
             label3.BackColor = Color.Transparent;
             label3.FlatStyle = FlatStyle.Flat;
             label3.ForeColor = SystemColors.ActiveCaptionText;
-            label3.Location = new Point(119, 118);
+            label3.Location = new Point(119, 124);
             label3.Name = "label3";
             label3.Size = new Size(0, 20);
             label3.TabIndex = 29;
@@ -232,7 +232,7 @@
             ReviewLabel.AutoSize = true;
             ReviewLabel.BackColor = Color.Transparent;
             ReviewLabel.Font = new Font("Microsoft PhagsPa", 12F);
-            ReviewLabel.Location = new Point(34, 233);
+            ReviewLabel.Location = new Point(44, 233);
             ReviewLabel.Name = "ReviewLabel";
             ReviewLabel.Size = new Size(73, 26);
             ReviewLabel.TabIndex = 30;
