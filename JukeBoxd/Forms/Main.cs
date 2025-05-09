@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using JukeBoxd.BusinessLayer;
 using JukeBoxd.Models;
 using SpotifyAPI.Web;
@@ -22,11 +14,15 @@ namespace JukeBoxd.Forms
         private DiaryDbContext dbContext;
         private User CurrentUser;
         private SpotifyClient spotify;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Main"/> class.
         /// Sets up the UI components and their initial properties.
         /// </summary>
-        public Main(DiaryDbContext dbContext, User currentUser,SpotifyClient spotify)
+        /// <param name="dbContext">The database context for accessing entries and users.</param>
+        /// <param name="currentUser">The currently logged-in user.</param>
+        /// <param name="spotify">The Spotify client for interacting with Spotify API.</param>
+        public Main(DiaryDbContext dbContext, User currentUser, SpotifyClient spotify)
         {
             InitializeComponent();
 
@@ -35,7 +31,7 @@ namespace JukeBoxd.Forms
             DeleteMainButton.FlatAppearance.BorderSize = 0;
             PreviewButton.FlatAppearance.BorderSize = 0;
             MainDataGridView.BackgroundColor = Color.FromArgb(255, 233, 205);
-            ReviewLabel.BackColor = Color.FromArgb(255, 233, 205);
+            ReviewTextBox.BackColor = Color.FromArgb(255, 233, 205);
             this.dbContext = dbContext;
             this.CurrentUser = currentUser;
             this.spotify = spotify;
@@ -68,7 +64,7 @@ namespace JukeBoxd.Forms
                 if (firstRow.Cells[8].Value != null && !string.IsNullOrEmpty(firstRow.Cells[8].Value!.ToString()))
                 {
                     var track = spotify.Tracks.Get(firstRow.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
-                    ReviewLabel.Text = firstRow.Cells[7].Value!.ToString();
+                    ReviewTextBox.Text = firstRow.Cells[7].Value!.ToString();
                     AlbumCoverPictureBox.Load(track);
                 }
             }
@@ -81,11 +77,11 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void AddButton_Click(object sender, EventArgs e)
+        public void AddButton_Click(object sender, EventArgs e)
         {
-            Add addForm = new(CurrentUser,spotify,dbContext);
+            Add addForm = new(CurrentUser, spotify, dbContext);
             addForm.SongAdded += (s, args) => UpdateDataGridView();
-            addForm.ShowDialog();
+            addForm.Show();
         }
 
         /// <summary>
@@ -124,7 +120,7 @@ namespace JukeBoxd.Forms
                     MainDataGridView.CurrentRow.Cells[3].Value!.ToString()!, // author
                     DateOnly.Parse(MainDataGridView.CurrentRow.Cells[5].Value!.ToString()!), // date
                     (int)MainDataGridView.CurrentRow.Cells[0].Value!, // id
-                    MainDataGridView.CurrentRow.Cells[7].Value!.ToString()!); // review
+                    MainDataGridView.CurrentRow.Cells[7].Value!.ToString()!, Program.dbContext); // review
                 update.SongUpdated += (s, args) => UpdateDataGridView();
                 update.Show();
             }
@@ -140,7 +136,7 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void DeleteButton_Click(object sender, EventArgs e)
+        public void DeleteButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -172,7 +168,7 @@ namespace JukeBoxd.Forms
                 {
                     if (row.Cells[8].Value!.ToString() != string.Empty)
                     {
-                        ReviewLabel.Text = row.Cells[7].Value!.ToString();
+                        ReviewTextBox.Text = row.Cells[7].Value!.ToString();
                         var track = spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
                         AlbumCoverPictureBox.Load(track);
                     }
@@ -186,7 +182,7 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private async void PreviewButton_Click(object sender, EventArgs e)
+        public async void PreviewButton_Click(object sender, EventArgs e)
         {
             var row = MainDataGridView.CurrentRow!;
             if (row.Cells[8].Value != null)
@@ -206,12 +202,18 @@ namespace JukeBoxd.Forms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
-        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        public void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void MainDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Handles the CellClick event of the DataGridView.
+        /// Updates the album cover and review label based on the selected row.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        public void MainDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -220,7 +222,7 @@ namespace JukeBoxd.Forms
                 {
                     if (row.Cells[8].Value!.ToString() != string.Empty)
                     {
-                        ReviewLabel.Text = row.Cells[7].Value!.ToString();
+                        ReviewTextBox.Text = row.Cells[7].Value!.ToString();
                         var track = spotify.Tracks.Get(row.Cells[8].Value!.ToString()!).Result.Album.Images[0].Url;
                         AlbumCoverPictureBox.Load(track);
                     }

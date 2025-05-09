@@ -143,12 +143,11 @@
         }
 
         #endregion
-
-        private ListBox UsersListBox;
         private Label UsernameLabel;
-        private TextBox UsernameTextBox;
         private Button UpdateButton;
         private Button DeleteButton;
         private Button AddUsersButton;
+        public ListBox UsersListBox;
+        public TextBox UsernameTextBox;
     }
 }

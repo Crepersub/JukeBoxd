@@ -37,7 +37,7 @@
             DeleteMainButton = new Button();
             AlbumCoverPictureBox = new PictureBox();
             PreviewButton = new Button();
-            ReviewLabel = new Label();
+            ReviewTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)MainDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)AlbumCoverPictureBox).BeginInit();
@@ -133,15 +133,17 @@
             PreviewButton.UseVisualStyleBackColor = false;
             PreviewButton.Click += PreviewButton_Click;
             // 
-            // ReviewLabel
+            // ReviewTextBox
             // 
-            ReviewLabel.BorderStyle = BorderStyle.FixedSingle;
-            ReviewLabel.FlatStyle = FlatStyle.Flat;
-            ReviewLabel.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ReviewLabel.Location = new Point(738, 306);
-            ReviewLabel.Name = "ReviewLabel";
-            ReviewLabel.Size = new Size(221, 95);
-            ReviewLabel.TabIndex = 9;
+            ReviewTextBox.BorderStyle = BorderStyle.FixedSingle;
+            ReviewTextBox.Font = new Font("Microsoft PhagsPa", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ReviewTextBox.Location = new Point(738, 289);
+            ReviewTextBox.Multiline = true;
+            ReviewTextBox.Name = "ReviewTextBox";
+            ReviewTextBox.ReadOnly = true;
+            ReviewTextBox.ScrollBars = ScrollBars.Vertical;
+            ReviewTextBox.Size = new Size(221, 112);
+            ReviewTextBox.TabIndex = 11;
             // 
             // Main
             // 
@@ -150,7 +152,7 @@
             BackgroundImage = Properties.Resources.main4;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(986, 448);
-            Controls.Add(ReviewLabel);
+            Controls.Add(ReviewTextBox);
             Controls.Add(PreviewButton);
             Controls.Add(AlbumCoverPictureBox);
             Controls.Add(DeleteMainButton);
@@ -168,16 +170,17 @@
             ((System.ComponentModel.ISupportInitialize)entryBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)AlbumCoverPictureBox).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         private BindingSource entryBindingSource;
-        private PictureBox AlbumCoverPictureBox;
-        private Label ReviewLabel;
         public DataGridView MainDataGridView;
         public Button AddMainButton;
         public Button UpdateMainButton;
         public Button DeleteMainButton;
         public Button PreviewButton;
+        public PictureBox AlbumCoverPictureBox;
+        public TextBox ReviewTextBox;
     }
 }

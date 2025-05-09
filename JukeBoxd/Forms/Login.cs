@@ -1,21 +1,36 @@
-using JukeBoxd;
 using JukeBoxd.Models;
 using SpotifyAPI.Web;
 
 namespace JukeBoxd.Forms
 {
+    /// <summary>
+    /// Represents the login form for the JukeBoxd application.
+    /// </summary>
     public partial class Login : Form
     {
+        /// <summary>
+        /// The database context used for accessing application data.
+        /// </summary>
         private DiaryDbContext dbContext;
+
+        /// <summary>
+        /// The currently logged-in user.
+        /// </summary>
         private User CurrentUser;
+
+        /// <summary>
+        /// The Spotify client used for interacting with the Spotify API.
+        /// </summary>
         private SpotifyClient spotify;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Login"/> class.
         /// Sets up the UI elements and their properties.
         /// </summary>
-        /// <param name="context">The DiaryDbContext to be used by this form.</param>
-        public Login(DiaryDbContext context, User currentUser,SpotifyClient spotify)
+        /// <param name="context">The <see cref="DiaryDbContext"/> to be used by this form.</param>
+        /// <param name="currentUser">The currently logged-in user.</param>
+        /// <param name="spotify">The <see cref="SpotifyClient"/> instance for Spotify API interactions.</param>
+        public Login(DiaryDbContext context, User currentUser, SpotifyClient spotify)
         {
             InitializeComponent();
 
@@ -48,7 +63,7 @@ namespace JukeBoxd.Forms
                 CurrentUser = dbContext.Users
                     .Where(x => x.Username == LoginComboBox.SelectedItem.ToString())
                     .FirstOrDefault()!;
-                new Main(dbContext,CurrentUser,spotify).Show();
+                new Main(dbContext, CurrentUser, spotify).Show();
                 Hide();
             }
             else
@@ -92,7 +107,7 @@ namespace JukeBoxd.Forms
         /// <param name="e">The event data.</param>
         public void UsersButton_Click(object sender, EventArgs e)
         {
-            new Users().Show();
+            new Users(dbContext, this).Show();
         }
     }
 }

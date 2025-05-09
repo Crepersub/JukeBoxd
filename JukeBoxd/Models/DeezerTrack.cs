@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JukeBoxd.Models
+﻿namespace JukeBoxd.Models
 {
     /// <summary>
     /// Represents a track from Deezer with associated metadata.

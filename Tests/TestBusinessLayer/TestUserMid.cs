@@ -1,14 +1,11 @@
 using JukeBoxd;
 using JukeBoxd.Models;
-using JukeBoxd.BusinessLayer;
-using Microsoft.EntityFrameworkCore.InMemory;
-using Microsoft.EntityFrameworkCore;
 namespace Tests.TestBusinessLayer;
 
 [TestClass]
 public class TestUserMid
 {
-    private TestDBContext _inMemoryDbContext;
+    public required TestDBContext _inMemoryDbContext;
 
     [TestInitialize]
     public void Setup()
@@ -76,7 +73,7 @@ public class TestUserMid
     public void GetUsersEntries_ReturnsCorrectEntries()
     {
         // Act
-        var entries = UserMid.GetUsersEntries(_inMemoryDbContext.Users.FirstOrDefault(x=>x.Username=="Ivan").Id, _inMemoryDbContext);
+        var entries = UserMid.GetUsersEntries(_inMemoryDbContext.Users.FirstOrDefault(x => x.Username == "Ivan")!.Id, _inMemoryDbContext);
 
         // Assert
         Assert.AreEqual(1, entries.Count);

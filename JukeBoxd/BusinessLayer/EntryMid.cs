@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JukeBoxd.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using JukeBoxd.Models;
 using SpotifyAPI.Web;
 
 namespace JukeBoxd.BusinessLayer

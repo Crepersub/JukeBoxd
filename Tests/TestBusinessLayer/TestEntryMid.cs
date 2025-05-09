@@ -1,27 +1,25 @@
+using System.Text.Json;
 using JukeBoxd;
 using JukeBoxd.BusinessLayer;
 using JukeBoxd.Models;
 using Microsoft.EntityFrameworkCore;
 using SpotifyAPI.Web;
-using Microsoft.EntityFrameworkCore.InMemory;
-using Moq;
-using System.Text.Json;
 namespace Tests.TestBusinessLayer;
 
 public class TestDBContext : DiaryDbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        
+
         optionsBuilder.UseInMemoryDatabase($"{Guid.NewGuid().ToString()}");
     }
-    
-    
+
+
 }
 [TestClass]
 public class TestEntryMid
 {
-    private TestDBContext _inMemoryDbContext;
+    public required TestDBContext _inMemoryDbContext;
 
     [TestInitialize]
     public void Setup()
@@ -36,7 +34,7 @@ public class TestEntryMid
         // Seed sample data
         _inMemoryDbContext.Entries.AddRange(new List<Entry>
         {
-            new Entry(){UserId=_inMemoryDbContext.Users.FirstOrDefault(x=>x.Username=="Ivan").Id,Title="Chandelier",Author = "Will Paquin", Length = TimeSpan.FromMinutes(3), EntryDate = DateOnly.FromDateTime(DateTime.Now), Rating = 4.0f, Review = "Great song!", SpotifyToken = "abc"},
+            new Entry(){UserId=_inMemoryDbContext.Users.FirstOrDefault(x=>x.Username=="Ivan")!.Id,Title="Chandelier",Author = "Will Paquin", Length = TimeSpan.FromMinutes(3), EntryDate = DateOnly.FromDateTime(DateTime.Now), Rating = 4.0f, Review = "Great song!", SpotifyToken = "abc"},
         });
         _inMemoryDbContext.SaveChanges();
     }
@@ -58,7 +56,7 @@ public class TestEntryMid
         // Arrange  
         var clientSecrets = JsonSerializer.Deserialize<ClientSecret>(File.ReadAllText(filePath));
         var config = SpotifyClientConfig.CreateDefault()
-            .WithAuthenticator(new ClientCredentialsAuthenticator(clientSecrets.ClientID, clientSecrets.clientSecret));
+            .WithAuthenticator(new ClientCredentialsAuthenticator(clientSecrets!.ClientID!, clientSecrets.clientSecret!));
         var spotifyClient = new SpotifyClient(config);
 
         var tracks = new List<FullTrack>
@@ -138,10 +136,10 @@ public class TestEntryMid
     public void UpdateEntry_UpdatesEntryInDatabase()
     {
         // Arrange
-        var entry = _inMemoryDbContext.Entries.First(x=>x.Title=="Chandelier");
+        var entry = _inMemoryDbContext.Entries.First(x => x.Title == "Chandelier");
 
         // Act
-        EntryMid.UpdateEntry(_inMemoryDbContext.Entries.First(x=>x.Title=="Chandelier").Id, 4.5f, DateOnly.FromDateTime(DateTime.Now), "Updated review", _inMemoryDbContext);
+        EntryMid.UpdateEntry(_inMemoryDbContext.Entries.First(x => x.Title == "Chandelier").Id, 4.5f, DateOnly.FromDateTime(DateTime.Now), "Updated review", _inMemoryDbContext);
 
         // Assert
         Assert.AreEqual(_inMemoryDbContext.Entries.First(x => x.Title == "Chandelier").Rating, entry.Rating);

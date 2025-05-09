@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JukeBoxd.Models;
+﻿using JukeBoxd.Models;
 using SpotifyAPI.Web;
 
 namespace Tests.TestModels
 {
     [TestClass]
-    public class TestFullTrackWithString 
+    public class TestFullTrackWithString
     {
         [TestMethod]
-        public void ToString_ReturnsCorrectFormat_WithSingleArtist() 
+        public void ToString_ReturnsCorrectFormat_WithSingleArtist()
         {
             // Arrange
             var track = new FullTrackWithString
@@ -32,7 +27,7 @@ namespace Tests.TestModels
         }
 
         [TestMethod]
-        public void ToString_ReturnsCorrectFormat_WithMultipleArtists() 
+        public void ToString_ReturnsCorrectFormat_WithMultipleArtists()
         {
             // Arrange
             var track = new FullTrackWithString
@@ -53,12 +48,12 @@ namespace Tests.TestModels
         }
 
         [TestMethod]
-        public void ToString_ReturnsEmptyString_WhenNameIsNull() 
+        public void ToString_ReturnsEmptyString_WhenNameIsNull()
         {
             // Arrange
             var track = new FullTrackWithString
             {
-                Name = string.Empty, 
+                Name = string.Empty,
                 Artists = new List<SimpleArtist>
                     {
                         new SimpleArtist { Name = "Artist1" }
@@ -73,7 +68,7 @@ namespace Tests.TestModels
         }
 
         [TestMethod]
-        public void ToString_ReturnsEmptyString_WhenArtistsListIsEmpty() 
+        public void ToString_ReturnsEmptyString_WhenArtistsListIsEmpty()
         {
             // Arrange
             var track = new FullTrackWithString

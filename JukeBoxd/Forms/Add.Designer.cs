@@ -244,6 +244,7 @@
             ReviewTextBox.Location = new Point(44, 262);
             ReviewTextBox.Multiline = true;
             ReviewTextBox.Name = "ReviewTextBox";
+            ReviewTextBox.ScrollBars = ScrollBars.Vertical;
             ReviewTextBox.Size = new Size(380, 112);
             ReviewTextBox.TabIndex = 31;
             // 
@@ -286,7 +287,6 @@
             Name = "Add";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JukeBoxd";
-            Load += Add_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

@@ -216,6 +216,7 @@
             ReviewTextBox.Location = new Point(43, 256);
             ReviewTextBox.Multiline = true;
             ReviewTextBox.Name = "ReviewTextBox";
+            ReviewTextBox.ScrollBars = ScrollBars.Vertical;
             ReviewTextBox.Size = new Size(447, 112);
             ReviewTextBox.TabIndex = 23;
             // 
@@ -295,7 +296,6 @@
             Name = "Update";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JukeBoxd";
-            Load += Update_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -323,12 +323,12 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label3;
-        private DateTimePicker EntryDateTimePicker;
         private TextBox EditingTextBox;
-        private TextBox ReviewTextBox;
         private Label EditingLabel;
         private Label label2;
         private Label EntryDateLabel;
         private Label ReviewLabel;
+        public TextBox ReviewTextBox;
+        public DateTimePicker EntryDateTimePicker;
     }
 }

@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using JukeBoxd.BusinessLayer;
-using JukeBoxd.Models;
+﻿using JukeBoxd.BusinessLayer;
 
 namespace JukeBoxd.Forms
 {
+    /// <summary>
+    /// Represents the form for updating a song entry in the JukeBoxd application.
+    /// </summary>
     public partial class Update : Form
     {
         /// <summary>
         /// Array of PictureBox controls representing the stars for rating.
         /// </summary>
-        private PictureBox[] stars;
+        public PictureBox[] stars;
 
         /// <summary>
         /// The current rating value, calculated based on the selected stars.
         /// </summary>
-        private float rating = 0;
+        public float rating = 0;
 
         /// <summary>
         /// Event triggered when a song is updated.
@@ -78,6 +71,7 @@ namespace JukeBoxd.Forms
         /// Timer used for animating the group jump effect for selected stars.
         /// </summary>
         private System.Windows.Forms.Timer? groupJumpTimer;
+
         /// <summary>
         /// The current step of the group animation for the selected stars.
         /// </summary>
@@ -89,6 +83,11 @@ namespace JukeBoxd.Forms
         private bool groupGoingUp = true;
 
         /// <summary>
+        /// The database context used for interacting with the application's data.
+        /// </summary>
+        private DiaryDbContext dbContext;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Update"/> form.
         /// </summary>
         /// <param name="title">The title of the song being updated.</param>
@@ -96,7 +95,8 @@ namespace JukeBoxd.Forms
         /// <param name="date">The date associated with the song entry.</param>
         /// <param name="id">The unique identifier of the song entry being updated.</param>
         /// <param name="review">The review text for the song.</param>
-        public Update(string title, string author, DateOnly date, int id, string review)
+        /// <param name="dbContext">The database context for interacting with the application's data.</param>
+        public Update(string title, string author, DateOnly date, int id, string review, DiaryDbContext dbContext)
         {
             InitializeComponent();
 
@@ -107,7 +107,7 @@ namespace JukeBoxd.Forms
             EntryDateTimePicker.BackColor = Color.FromArgb(224, 224, 224);
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5, pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
             this.BackColor = Color.FromArgb(230, 218, 206);
-            
+
             UpdateButton.FlatAppearance.BorderSize = 0;
 
             foreach (var star in stars)
@@ -155,13 +155,14 @@ namespace JukeBoxd.Forms
             selectedID = id;
             EntryDateLabel.BackColor = Color.FromArgb(255, 233, 205);
             UpdateButton.FlatAppearance.BorderSize = 0;
+            this.dbContext = dbContext;
         }
 
         /// <summary>
         /// Sets the rating based on the number of half-stars selected.
         /// </summary>
         /// <param name="halfStarIndex">The index of the half-star selected.</param>
-        private void SetRating(int halfStarIndex)
+        public void SetRating(int halfStarIndex)
         {
             rating = halfStarIndex * 0.5f; // 1 half-star = 0.5 rating
         }
@@ -169,7 +170,7 @@ namespace JukeBoxd.Forms
         /// <summary>
         /// Resets all stars to their default (unselected) state.
         /// </summary>
-        private void ResetStars()
+        public void ResetStars()
         {
             for (int i = 0; i < stars.Length; i++)
             {
@@ -181,11 +182,12 @@ namespace JukeBoxd.Forms
                     stars[i].Image = Properties.Resources.newEStar1;
             }
         }
+
         /// <summary>
         /// Highlights the stars up to the specified count, changing their appearance to indicate selection.
         /// </summary>
         /// <param name="count">The number of stars to highlight.</param>
-        private void HighlightStars(int count)
+        public void HighlightStars(int count)
         {
             for (int i = 0; i < stars.Length; i++)
             {
@@ -209,6 +211,7 @@ namespace JukeBoxd.Forms
                 }
             }
         }
+
         /// <summary>
         /// Starts the animation for the star currently being hovered over, creating a "jumping" effect.
         /// </summary>
@@ -254,6 +257,7 @@ namespace JukeBoxd.Forms
             };
             animationTimer.Start();
         }
+
         /// <summary>
         /// Starts the group animation for all selected stars, creating a synchronized "jumping" effect.
         /// </summary>
@@ -319,21 +323,17 @@ namespace JukeBoxd.Forms
 
             groupJumpTimer.Start();
         }
+
         /// <summary>
         /// Handles the click event for the Update button, updating the song entry and closing the form.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The event data.</param>
-        private void UpdateButton_Click(object sender, EventArgs e)
+        public void UpdateButton_Click(object sender, EventArgs e)
         {
-            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text, Program.dbContext);
+            EntryMid.UpdateEntry(selectedID, rating, DateOnly.FromDateTime(EntryDateTimePicker.Value), ReviewTextBox.Text, dbContext);
             SongUpdated?.Invoke(this, EventArgs.Empty);
             this.Close();
-        }
-
-        private void Update_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

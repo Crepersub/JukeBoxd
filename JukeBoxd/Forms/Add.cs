@@ -1,23 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using JukeBoxd.BusinessLayer;
+﻿using JukeBoxd.BusinessLayer;
 using JukeBoxd.Models;
 using SpotifyAPI.Web;
 
 namespace JukeBoxd.Forms
 {
+    /// <summary>
+    /// Represents the form for adding a new song entry.
+    /// </summary>
     public partial class Add : Form
     {
+        /// <summary>
+        /// The current user of the application.
+        /// </summary>
         private User CurrentUser;
+
+        /// <summary>
+        /// The Spotify client used for API interactions.
+        /// </summary>
         private SpotifyClient spotify;
+
+        /// <summary>
+        /// The database context for managing entries.
+        /// </summary>
         private DiaryDbContext dbContext;
+
         /// <summary>
         /// Array of PictureBox controls representing the stars for rating.
         /// </summary>
@@ -91,6 +97,9 @@ namespace JukeBoxd.Forms
         /// <summary>
         /// Initializes a new instance of the <see cref="Add"/> form.
         /// </summary>
+        /// <param name="currentUser">The current user of the application.</param>
+        /// <param name="spotify">The Spotify client used for API interactions.</param>
+        /// <param name="dbContext">The database context for managing entries.</param>
         public Add(User currentUser, SpotifyClient spotify, DiaryDbContext dbContext)
         {
             InitializeComponent();
@@ -102,7 +111,7 @@ namespace JukeBoxd.Forms
             AddButton.FlatAppearance.BorderSize = 0;
 
             stars = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4, pictureBox5,
-                                pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
+                                        pictureBox6, pictureBox7, pictureBox8, pictureBox9, pictureBox10 };
 
             foreach (var star in stars)
             {
@@ -122,15 +131,15 @@ namespace JukeBoxd.Forms
                 };
 
                 stars[i].Click += (s, e) =>
-            {
-                rating = (index + 1) / 2f;
-                selectedCount = index + 1;
-                SetRating(index + 1);
-                isRatingSet = true;
-                HighlightStars(selectedCount);
-                label3.Text = $"{rating}";
-                StartGroupJump();
-            };
+                {
+                    rating = (index + 1) / 2f;
+                    selectedCount = index + 1;
+                    SetRating(index + 1);
+                    isRatingSet = true;
+                    HighlightStars(selectedCount);
+                    label3.Text = $"{rating}";
+                    StartGroupJump();
+                };
                 stars[i].MouseLeave += (s, e) =>
                 {
                     if (!isRatingSet) ResetStars();
@@ -277,7 +286,7 @@ namespace JukeBoxd.Forms
         /// <summary>
         /// Resets all stars to their default (unselected) state.
         /// </summary>
-        private void ResetStars()
+        public void ResetStars()
         {
             for (int i = 0; i < stars.Length; i++)
             {
@@ -291,6 +300,7 @@ namespace JukeBoxd.Forms
                 }
             }
         }
+
         /// <summary>
         /// Highlights the stars up to the specified count.
         /// Updates the star images to represent filled or empty states.
@@ -427,11 +437,6 @@ namespace JukeBoxd.Forms
             {
                 MessageBox.Show("Please enter a song!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void Add_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

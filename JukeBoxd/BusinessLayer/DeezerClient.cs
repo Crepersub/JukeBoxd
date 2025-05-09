@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Windows.Media.Protection.PlayReady;
-using NAudio.Wave;
-using System.Net;
-using SpotifyAPI.Web;
+﻿using System.Text.Json;
 using JukeBoxd.Models;
+using NAudio.Wave;
+using SpotifyAPI.Web;
 
 namespace JukeBoxd.BusinessLayer
 {

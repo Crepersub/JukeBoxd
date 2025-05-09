@@ -1,23 +1,16 @@
-using JukeBoxd;
 using JukeBoxd.Forms;
 using JukeBoxd.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SpotifyAPI.Web;
-using System.Linq;
-using System.Windows.Forms;
 using Tests.TestBusinessLayer;
 
 
-namespace Tests
+namespace Tests.TestForms
 {
     [TestClass]
     public class TestLogin
     {
-        private TestDBContext _inMemoryDbContext;
-        private Login _loginForm;
-        private User _currentUser;
-        private SpotifyClient spotify;// Replacing Program.CurrentUser
+        public required TestDBContext _inMemoryDbContext;
+        public required Login _loginForm;
+        public required User _currentUser;
 
         [TestInitialize]
         public void Setup()
@@ -35,7 +28,7 @@ namespace Tests
             _inMemoryDbContext.SaveChanges();
 
             // Initialize the Login form
-            _loginForm = new Login(_inMemoryDbContext,_currentUser,spotify);
+            _loginForm = new Login(_inMemoryDbContext, _currentUser, null!);
         }
 
         [TestCleanup]
@@ -51,7 +44,7 @@ namespace Tests
         public void Login_Load_PopulatesComboBoxWithUsernames()
         {
             // Act
-            _loginForm.Login_Load(null, null);
+            _loginForm.Login_Load(null!, null!);
 
             // Assert
             Assert.AreEqual(2, _loginForm.LoginComboBox.Items.Count);
@@ -63,12 +56,12 @@ namespace Tests
         public void LoginButton_Click_SetsCurrentUserAndOpensMainForm()
         {
             // Arrange
-            _loginForm.Login_Load(null, null);
+            _loginForm.Login_Load(null!, null!);
             _loginForm.LoginComboBox.SelectedItem = "Alice";
 
             // Act
-            _loginForm.LoginButton_Click(null, null);
-            _currentUser = _inMemoryDbContext.Users.FirstOrDefault(u => u.Username == "Alice");
+            _loginForm.LoginButton_Click(null!, null!);
+            _currentUser = _inMemoryDbContext.Users.FirstOrDefault(u => u.Username == "Alice")!;
 
             // Assert
             Assert.IsNotNull(_currentUser);
@@ -79,7 +72,7 @@ namespace Tests
         public void Reload_UpdatesComboBoxWithNewUsernames()
         {
             // Arrange
-            _loginForm.Login_Load(null, null);
+            _loginForm.Login_Load(null!, null!);
             _inMemoryDbContext.Users.Add(new User("Charlie"));
             _inMemoryDbContext.SaveChanges();
 
