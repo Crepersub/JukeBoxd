@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using SpotifyAPI.Web;
-namespace JukeBoxd
+namespace JukeBoxd.Models
 {
     /// <summary>
     /// Represents a Spotify track with a custom string representation.

@@ -1,55 +1,76 @@
-﻿using System.Data;
+﻿using System.Reflection;
+using System.Text.Json;
+using JukeBoxd.Forms;
 using JukeBoxd.Models;
 using SpotifyAPI.Web;
-using JukeBoxd.Forms;
-using System.Text.Json;
 namespace JukeBoxd
 {
-    /// <summary>
-    /// Represents the main program class for the JukeBoxd application.
-    /// </summary>
-    internal class Program
+    /// <summary>  
+    /// Represents the main program class for the JukeBoxd application.  
+    /// This class initializes the application, sets up the database, and manages the main forms.  
+    /// </summary>  
+    public class Program
     {
-        /// <summary>
-        /// The currently logged-in user.
-        /// </summary>
+        /// <summary>  
+        /// The currently logged-in user. This is set after a successful login.  
+        /// </summary>  
         static public User? CurrentUser;
 
-        /// <summary>
-        /// The database context for managing users and entries.
-        /// </summary>
-        static public DiaryDbContext dbContext = new DiaryDbContext();
+        /// <summary>  
+        /// The database context for managing users and their diary entries.  
+        /// </summary>  
+        static public DiaryDbContext dbContext = new();
 
-        static string filepath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName + "/ClientSecrets.json";
-        static string fullJSON = File.ReadAllText(filepath);
-        static ClientSecret clientSecret = JsonSerializer.Deserialize<ClientSecret>(fullJSON);
-        /// <summary>
-        /// Spotify client configuration with authentication.
-        /// </summary>
+        /// <summary>  
+        /// The deserialized client secret object containing Spotify API credentials.  
+        /// </summary>  
+        static ClientSecret clientSecret = JsonSerializer.Deserialize<ClientSecret>(ReadClientSecret())!;
+
+        /// <summary>  
+        /// Spotify client configuration with authentication using client credentials.  
+        /// </summary>  
         static SpotifyClientConfig config = SpotifyClientConfig
             .CreateDefault()
-            .WithAuthenticator(new ClientCredentialsAuthenticator(clientSecret.clientID, clientSecret.clientSecret));
+            .WithAuthenticator(new ClientCredentialsAuthenticator(clientSecret.ClientID!, clientSecret.clientSecret!));
 
-        /// <summary>
-        /// Spotify client instance for interacting with the Spotify API.
-        /// </summary>
-        static public SpotifyClient spotify = new SpotifyClient(config);
+        /// <summary>  
+        /// Spotify client instance for interacting with the Spotify API.  
+        /// </summary>  
+        static public SpotifyClient spotify = new(config);
 
-        /// <summary>
-        /// The login form instance.
-        /// </summary>
-        static public Login login = new Login();
+        /// <summary>  
+        /// The login form instance, used as the initial form for user authentication.  
+        /// </summary>  
+        static public Login login = new(dbContext, CurrentUser!, spotify);
 
-        /// <summary>
-        /// The main form instance.
-        /// </summary>
-        static public Main main = new Main();
+        /// <summary>  
+        /// The main form instance, displayed after a successful login.  
+        /// </summary>  
+        static public Main main = new(dbContext, CurrentUser!, spotify);
 
+        /// <summary>  
+        /// The main entry point for the application.  
+        /// Initializes the database, enables visual styles, and starts the login form.  
+        /// </summary>  
+        /// <param name="args">Command-line arguments passed to the application.</param>  
         static void Main(string[] args)
         {
+            // Ensure the database is created before starting the application.  
             dbContext.Database.EnsureCreated();
+
+            // Enable visual styles for the application.  
             Application.EnableVisualStyles();
+
+            // Start the application with the login form.  
             Application.Run(login);
+        }
+        static string ReadClientSecret()
+        {
+            string resourceName = "JukeBoxd.ClientSecrets.json";
+
+            using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)!;
+            using StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
     }
 }

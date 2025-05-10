@@ -28,74 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             label1 = new Label();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
+            LoginComboBox = new ComboBox();
+            LoginButton = new Button();
+            UsersButton = new Button();
             SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(284, 115);
+            label1.BackColor = Color.Transparent;
+            label1.FlatStyle = FlatStyle.Flat;
+            label1.Font = new Font("Berlin Sans FB Demi", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(235, 152);
             label1.Name = "label1";
-            label1.Size = new Size(215, 46);
+            label1.Size = new Size(289, 48);
             label1.TabIndex = 0;
             label1.Text = "Select a user:";
             // 
-            // comboBox1
+            // LoginComboBox
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.ItemHeight = 20;
-            comboBox1.Location = new Point(309, 177);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 1;
+            LoginComboBox.BackColor = Color.Cornsilk;
+            LoginComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            LoginComboBox.Font = new Font("Microsoft PhagsPa", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LoginComboBox.ForeColor = Color.Black;
+            LoginComboBox.FormattingEnabled = true;
+            LoginComboBox.ItemHeight = 29;
+            LoginComboBox.Location = new Point(306, 215);
+            LoginComboBox.Name = "LoginComboBox";
+            LoginComboBox.Size = new Size(160, 37);
+            LoginComboBox.TabIndex = 1;
             // 
-            // button1
+            // LoginButton
             // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(322, 228);
-            button1.Name = "button1";
-            button1.Size = new Size(125, 48);
-            button1.TabIndex = 2;
-            button1.Text = "Log in";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            LoginButton.BackColor = Color.Transparent;
+            LoginButton.BackgroundImage = (Image)resources.GetObject("LoginButton.BackgroundImage");
+            LoginButton.BackgroundImageLayout = ImageLayout.Zoom;
+            LoginButton.FlatStyle = FlatStyle.Flat;
+            LoginButton.Font = new Font("Microsoft PhagsPa", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LoginButton.Location = new Point(306, 258);
+            LoginButton.Margin = new Padding(0);
+            LoginButton.Name = "LoginButton";
+            LoginButton.Size = new Size(160, 54);
+            LoginButton.TabIndex = 2;
+            LoginButton.Text = "Log in";
+            LoginButton.UseVisualStyleBackColor = false;
+            LoginButton.Click += LoginButton_Click;
             // 
-            // button2
+            // UsersButton
             // 
-            button2.Location = new Point(309, 299);
-            button2.Name = "button2";
-            button2.Size = new Size(151, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Modify users";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            UsersButton.BackColor = Color.Transparent;
+            UsersButton.BackgroundImage = Properties.Resources.button1;
+            UsersButton.BackgroundImageLayout = ImageLayout.Stretch;
+            UsersButton.FlatStyle = FlatStyle.Flat;
+            UsersButton.Font = new Font("Microsoft PhagsPa", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            UsersButton.Location = new Point(280, 322);
+            UsersButton.Margin = new Padding(0);
+            UsersButton.Name = "UsersButton";
+            UsersButton.Size = new Size(203, 42);
+            UsersButton.TabIndex = 3;
+            UsersButton.Text = "Modify users";
+            UsersButton.UseVisualStyleBackColor = false;
+            UsersButton.Click += UsersButton_Click;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(comboBox1);
+            BackgroundImage = Properties.Resources.login2;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(747, 478);
+            Controls.Add(UsersButton);
+            Controls.Add(LoginButton);
+            Controls.Add(LoginComboBox);
             Controls.Add(label1);
+            DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Login";
-            Text = "Form1";
+            SizeGripStyle = SizeGripStyle.Show;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "JukeBoxd";
             Load += Login_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Label label1;
-        private ComboBox comboBox1;
-        private Button button1;
-        private Button button2;
+        private Button LoginButton;
+        private Button UsersButton;
+        public ComboBox LoginComboBox;
     }
 }

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JukeBoxd", "JukeBoxd\JukeBoxd.csproj", "{9F6DBAB8-2560-4F26-B845-A2C0760AB1CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{EE22439F-488D-460F-9E20-A34F60603D73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9F6DBAB8-2560-4F26-B845-A2C0760AB1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F6DBAB8-2560-4F26-B845-A2C0760AB1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F6DBAB8-2560-4F26-B845-A2C0760AB1CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE22439F-488D-460F-9E20-A34F60603D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE22439F-488D-460F-9E20-A34F60603D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE22439F-488D-460F-9E20-A34F60603D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE22439F-488D-460F-9E20-A34F60603D73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
