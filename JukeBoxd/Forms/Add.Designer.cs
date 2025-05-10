@@ -74,7 +74,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Microsoft PhagsPa", 12F);
-            label1.Location = new Point(44, 37);
+            label1.Location = new Point(44, 27);
             label1.Name = "label1";
             label1.Size = new Size(124, 26);
             label1.TabIndex = 1;
