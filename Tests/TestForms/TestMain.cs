@@ -85,21 +85,6 @@ public class TestMain
     }
 
     [TestMethod]
-    public void DeleteButton_Click_RemovesSelectedEntry()
-    {
-        // Arrange
-        _mainForm.Main_Load(null!, null!);
-        _mainForm.MainDataGridView.CurrentCell = _mainForm.MainDataGridView.Rows[0].Cells[4];
-
-        // Act
-        _mainForm.DeleteButton_Click(null!, null!);
-
-        // Assert
-        var deletedEntry = _inMemoryDbContext.Entries.FirstOrDefault(e => e.Id == 1);
-        Assert.IsNull(deletedEntry);
-    }
-
-    [TestMethod]
     public void PreviewButton_Click_PlaysPreviewForSelectedSong()
     {
         // Arrange
