@@ -78,13 +78,14 @@
 
 # Как да изтеглите
 
+
 **Изтеглете инсталатора**
 
 Изтеглете последната версия на JukeBoxdInstaller.exe от страницата [Releases](https://github.com/Crepersub/JukeBoxd/releases)
 
 **Стартирайте инсталацията**
 
-   - Двойно кликване върху `JukeBoxdInstaller.exe`
+   - Стартирайте `JukeBoxdInstaller.exe`
    - Ако получите предупреждение от SmartScreen:
      - Натиснете **Допълнителна информация (More info)** → **Стартиране все пак (Run anyway)**
    - Инсталаторът ще:
