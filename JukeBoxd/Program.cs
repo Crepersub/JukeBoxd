@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Reflection;
+using System.Text.Json;
 using JukeBoxd.Forms;
 using JukeBoxd.Models;
 using SpotifyAPI.Web;
@@ -21,19 +22,9 @@ namespace JukeBoxd
         static public DiaryDbContext dbContext = new();
 
         /// <summary>  
-        /// The file path to the client secrets JSON file, used for Spotify API authentication.  
-        /// </summary>  
-        static string filepath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName + "/ClientSecrets.json";
-
-        /// <summary>  
-        /// The full JSON content of the client secrets file, read as a string.  
-        /// </summary>  
-        static string fullJSON = File.ReadAllText(filepath);
-
-        /// <summary>  
         /// The deserialized client secret object containing Spotify API credentials.  
         /// </summary>  
-        static ClientSecret clientSecret = JsonSerializer.Deserialize<ClientSecret>(fullJSON)!;
+        static ClientSecret clientSecret = JsonSerializer.Deserialize<ClientSecret>(ReadClientSecret())!;
 
         /// <summary>  
         /// Spotify client configuration with authentication using client credentials.  
@@ -72,6 +63,14 @@ namespace JukeBoxd
 
             // Start the application with the login form.  
             Application.Run(login);
+        }
+        static string ReadClientSecret()
+        {
+            string resourceName = "JukeBoxd.ClientSecrets.json";
+
+            using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)!;
+            using StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
     }
 }
