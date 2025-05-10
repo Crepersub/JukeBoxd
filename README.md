@@ -79,6 +79,7 @@
 # Как да изтеглите
 
 **Изтеглете инсталатора**
+
 Изтеглете последната версия на JukeBoxdInstaller.exe от страницата [Releases](https://github.com/Crepersub/JukeBoxd/releases)
 
 **Стартирайте инсталацията**
