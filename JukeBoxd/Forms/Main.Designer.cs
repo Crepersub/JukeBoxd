@@ -161,6 +161,7 @@
             Controls.Add(AddMainButton);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JukeBoxd";
